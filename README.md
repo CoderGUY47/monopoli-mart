@@ -11,10 +11,10 @@ Monopoly-Mart is a high-end, **cinematic eCommerce solution** tailored for the l
 ## 📖 Table of Contents
 
 - [✨ Overview](#-overview)
-- [💡 Business Value &amp; SEO](#-business-value--seo)
+- [💡 Business Value & SEO](#-business-value--seo)
 - [🚀 Key Features](#-key-features)
-- [📦 Tech Stack &amp; Architecture](#-tech-stack--architecture)
-- [🛠️ Installation &amp; Setup](#-installation--setup)
+- [📦 Tech Stack & Architecture](#-tech-stack--architecture)
+- [🛠️ Installation & Setup](#️-installation--setup)
 - [🚢 Production Deployment](#-production-deployment)
 
 ---
@@ -27,7 +27,7 @@ Monopoly-Mart bridges the gap between high-end visual storytelling and conversio
 
 [View Monopoly-Mart Live](https://monopoli-mart.vercel.app/)
 
-![Monopoly-Mart Premium Skincare Banner](https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=2000&auto=format&fit=crop)
+![Monopoly-Mart Premium Skincare Banner](https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=2000&auto=format&fit=crop&ar=16:9)
 *Figure 1: High-resolution cinematic banner highlighting the luxury skincare theme.*
 
 ---
@@ -73,28 +73,27 @@ Most beauty platforms fail to balance aesthetics with performance. Monopoly-Mart
 
 ## 🛠️ Installation & Setup
 
-1. [ ] **Clone & Install**
+1. **Clone & Install**
 
+   ```bash
+   git clone https://github.com/CoderGUY47/monopoli-mart.git
+   cd monopoli-mart
+   npm install --legacy-peer-deps
+   ```
 
-    ```bash
-    git clone https://github.com/CoderGUY47/monopoli-mart.git
-    cd monopoli-mart
-    npm install --legacy-peer-deps
-    ```
-2. [ ] **Environment Variables**
-    Create a `.env` file with the following keys:
+2. **Environment Variables**
 
+   Create a `.env` file with the following keys:
+   - `MONGODB_URI`
+   - `BETTER_AUTH_SECRET`
+   - `BETTER_AUTH_URL`
+   - `NEXT_PUBLIC_APP_URL`
 
-    - [ ] `MONGODB_URI`
-    - [ ] `BETTER_AUTH_SECRET`
-    - [ ] `BETTER_AUTH_URL`
-    - [ ] `NEXT_PUBLIC_APP_URL`
-3. [ ] **Develop**
+3. **Develop**
 
-
-    ```bash
-    npm run dev
-    ```
+   ```bash
+   npm run dev
+   ```
 
 ---
 
