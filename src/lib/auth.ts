@@ -15,7 +15,7 @@ export const auth = betterAuth({
   database: mongodbAdapter(db, {
     client
   }),
-  // Required for Better Auth to know its base URL
+
   baseURL: process.env.BETTER_AUTH_URL,
   secondaryStorage: {
     get: async (key) => null,
