@@ -1,0 +1,284 @@
+[
+  {
+    "id": 1,
+    "title": "JisuLife FA43",
+    "image": "products-images/jisulife-fa43.jpg",
+    "price": "৳ 1,290"
+  },
+  {
+    "id": 2,
+    "title": "JISULIFE FA49",
+    "image": "products-images/jisulife-fa49.jpg",
+    "price": "৳ 1,150"
+  },
+  {
+    "id": 3,
+    "title": "JISULIFE FA53 Pro1S",
+    "image": "products-images/jisulife-fa53-pro1s.jpg",
+    "price": "৳ 4,790"
+  },
+  {
+    "id": 4,
+    "title": "Handheld Fan Life10",
+    "image": "products-images/jisulife-handheld-fan-life10.jpg",
+    "price": "৳ 2,190"
+  },
+  {
+    "id": 5,
+    "title": "Handheld Fan Life10S",
+    "image": "products-images/jisulife-handheld-fan-life10s.jpg",
+    "price": "৳ 2,590"
+  },
+  {
+    "id": 6,
+    "title": "Handheld Fan Life8 Plus",
+    "image": "products-images/jisulife-handheld-fan-life8-plus.jpg",
+    "price": "৳ 1,890"
+  },
+  {
+    "id": 7,
+    "title": "Handheld Fan Pro1 Youth",
+    "image": "products-images/jisulife-handheld-fan-pro1-youth-edition.jpg",
+    "price": "৳ 3,790"
+  },
+  {
+    "id": 8,
+    "title": "Handheld Fan Ultra2",
+    "image": "products-images/jisulife-handheld-fan-ultra2.jpg",
+    "price": "৳ 5,290"
+  },
+  {
+    "id": 9,
+    "title": "Life 5 Plus FA43",
+    "image": "products-images/jisulife-life-5-plus-fa43.jpg",
+    "price": "৳ 2,290"
+  },
+  {
+    "id": 10,
+    "title": "Life 5 Plus",
+    "image": "products-images/jisulife-life5-plus.jpg",
+    "price": "৳ 2,290"
+  },
+  {
+    "id": 11,
+    "title": "Dotkey Sunscreen SPF 50",
+    "image": "dotkey-sunscreen.png",
+    "price": "৳ 890"
+  },
+  {
+    "id": 12,
+    "title": "UV Sunscreen Cream",
+    "image": "uv-sunscreen.png",
+    "price": "৳ 750"
+  },
+  {
+    "id": 13,
+    "title": "Foldable Travel Fan",
+    "image": "foldable-fan.png",
+    "price": "৳ 1,490"
+  },
+  {
+    "id": 14,
+    "title": "Fan Series I",
+    "image": "fan-1.jpg",
+    "price": "৳ 1,990"
+  },
+  {
+    "id": 15,
+    "title": "Fan Series II",
+    "image": "fan-2.jpg",
+    "price": "৳ 2,090"
+  },
+  {
+    "id": 16,
+    "title": "Fan Series III",
+    "image": "fan-3.jpg",
+    "price": "৳ 2,190"
+  },
+  {
+    "id": 17,
+    "title": "Summer Glow Set I",
+    "image": "horizontal-1.jpg",
+    "price": "৳ 1,200"
+  },
+  {
+    "id": 18,
+    "title": "Summer Glow Set II",
+    "image": "horizontal-2.jpg",
+    "price": "৳ 1,200"
+  },
+  {
+    "id": 19,
+    "title": "Summer Glow Set III",
+    "image": "horizontal-3.jpg",
+    "price": "৳ 1,300"
+  },
+  {
+    "id": 20,
+    "title": "Summer Glow Set IV",
+    "image": "horizontal-4.jpg",
+    "price": "৳ 1,350"
+  },
+  {
+    "id": 21,
+    "title": "Summer Glow Set V",
+    "image": "horizontal-5.jpg",
+    "price": "৳ 1,400"
+  },
+  {
+    "id": 22,
+    "title": "Summer Glow Set VI",
+    "image": "horizontal-6.jpg",
+    "price": "৳ 1,450"
+  },
+  {
+    "id": 23,
+    "title": "Summer Glow Set VII",
+    "image": "horizontal-7.jpg",
+    "price": "৳ 1,500"
+  },
+  {
+    "id": 24,
+    "title": "Summer Glow Set VIII",
+    "image": "horizontal-8.jpg",
+    "price": "৳ 1,550"
+  },
+  {
+    "id": 25,
+    "title": "Summer Glow Set IX",
+    "image": "horizontal-9.jpg",
+    "price": "৳ 1,600"
+  },
+  {
+    "id": 26,
+    "title": "Summer Glow Set X",
+    "image": "horizontal-10.jpg",
+    "price": "৳ 1,650"
+  },
+  {
+    "id": 27,
+    "title": "Summer Glow Set XI",
+    "image": "horizontal-11.jpg",
+    "price": "৳ 1,700"
+  },
+  {
+    "id": 28,
+    "title": "Luxury Edition I",
+    "image": "vertical-1.jpg",
+    "price": "৳ 2,500"
+  },
+  {
+    "id": 29,
+    "title": "Luxury Edition II",
+    "image": "vertical-2.jpg",
+    "price": "৳ 2,600"
+  },
+  {
+    "id": 30,
+    "title": "Luxury Edition III",
+    "image": "vertical-3.jpg",
+    "price": "৳ 2,700"
+  },
+  {
+    "id": 31,
+    "title": "Luxury Edition IV",
+    "image": "vertical-4.jpg",
+    "price": "৳ 2,800"
+  },
+  {
+    "id": 32,
+    "title": "Luxury Edition V",
+    "image": "vertical-5.jpg",
+    "price": "৳ 2,900"
+  },
+  {
+    "id": 33,
+    "title": "Luxury Edition VI",
+    "image": "vertical-6.jpg",
+    "price": "৳ 3,000"
+  },
+  {
+    "id": 34,
+    "title": "Luxury Edition VII",
+    "image": "vertical-7.jpg",
+    "price": "৳ 3,100"
+  },
+  {
+    "id": 35,
+    "title": "Luxury Edition VIII",
+    "image": "vertical-8.jpg",
+    "price": "৳ 3,200"
+  },
+  {
+    "id": 36,
+    "title": "Luxury Edition IX",
+    "image": "vertical-9.jpg",
+    "price": "৳ 3,300"
+  },
+  {
+    "id": 37,
+    "title": "Luxury Edition X",
+    "image": "vertical-10.jpg",
+    "price": "৳ 3,400"
+  },
+  {
+    "id": 38,
+    "title": "Luxury Edition XI",
+    "image": "vertical-11.jpg",
+    "price": "৳ 3,500"
+  },
+  {
+    "id": 39,
+    "title": "Luxury Edition XII",
+    "image": "vertical-12.jpg",
+    "price": "৳ 3,600"
+  },
+  {
+    "id": 40,
+    "title": "Luxury Edition XIII",
+    "image": "vertical-13.jpg",
+    "price": "৳ 3,700"
+  },
+  {
+    "id": 41,
+    "title": "Luxury Edition XIV",
+    "image": "vertical-14.jpg",
+    "price": "৳ 3,800"
+  },
+  {
+    "id": 42,
+    "title": "Luxury Edition XV",
+    "image": "vertical-15.jpg",
+    "price": "৳ 3,900"
+  },
+  {
+    "id": 43,
+    "title": "Luxury Edition XVI",
+    "image": "vertical-16.jpg",
+    "price": "৳ 4,000"
+  },
+  {
+    "id": 44,
+    "title": "Luxury Edition XVII",
+    "image": "vertical-17.jpg",
+    "price": "৳ 4,100"
+  },
+  {
+    "id": 45,
+    "title": "Luxury Edition XVIII",
+    "image": "vertical-18.jpg",
+    "price": "৳ 4,200"
+  },
+  {
+    "id": 46,
+    "title": "Luxury Edition XIX",
+    "image": "vertical-19.jpg",
+    "price": "৳ 4,300"
+  },
+  {
+    "id": 47,
+    "title": "Luxury Edition XX",
+    "image": "vertical-20.jpg",
+    "price": "৳ 4,400"
+  }
+]
