@@ -101,7 +101,7 @@ export default function AboutUsPage() {
           </p>
           <p className="text-stone-600 font-light leading-relaxed">
             From the highlands of Australia to the lush forests of Southeast
-            Asia, our ingredients travel the world so your skin doesn't have to.
+            Asia, our ingredients travel the world so your skin doesn&apos;t have to.
           </p>
           <Link
             href="/products"

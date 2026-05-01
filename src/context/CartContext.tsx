@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext, useContext, useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 export interface CartItem {
   id: string | number;
@@ -46,12 +47,14 @@ export function CartProvider({ children }: { children: React.ReactNode }) {
     setCart((prevCart) => {
       const existingItem = prevCart.find((item) => item.id === product.id);
       if (existingItem) {
+        toast.success(`Success! Increased quantity of ${product.title}`);
         return prevCart.map((item) =>
           item.id === product.id
             ? { ...item, quantity: item.quantity + 1 }
             : item
         );
       }
+      toast.success(`Hurray! ${product.title} added to cart`);
       return [
         ...prevCart,
         {

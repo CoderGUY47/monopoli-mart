@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Outfit, Playfair_Display } from "next/font/google";
 import "./globals.css";
+import "react-toastify/dist/ReactToastify.css";
+import { ToastContainer } from "react-toastify";
 import { CartProvider } from "@/context/CartContext";
 
 const outfit = Outfit({ subsets: ["latin"], variable: "--font-outfit" });
@@ -29,7 +31,10 @@ export default function RootLayout({
         className={`min-h-full flex flex-col font-sans bg-[#f7f4ee] text-[#2c2b29]`}
         suppressHydrationWarning
       >
-        <CartProvider>{children}</CartProvider>
+        <CartProvider>
+          {children}
+          <ToastContainer position="bottom-right" theme="colored" pauseOnHover />
+        </CartProvider>
       </body>
     </html>
   );

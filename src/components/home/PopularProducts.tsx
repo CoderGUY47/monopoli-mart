@@ -40,7 +40,7 @@ export default function PopularProducts() {
             Popular <span className="italic font-bold">Products</span>
           </h2>
           <p className="text-gray-500 font-outfit max-w-lg">
-            Discover our most loved products, handpicked for you. Experinece top-tier cooling with these fan-favorites.
+            Discover our most loved products, handpicked for you. Experience top-tier cooling with these fan-favorites.
           </p>
         </div>
 

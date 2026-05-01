@@ -5,7 +5,7 @@ import { Button } from "@/components/ui/button";
 import { getProductById } from "@/lib/products";
 
 // --- Main Page Component ---
-export default async function ProductDetailsPage({ params }: { params: { id: string } }) {
+export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
   const { id } = await params;
   const product = getProductById(id);
 

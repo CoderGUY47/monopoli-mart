@@ -12,7 +12,7 @@ export default function Articles() {
     {
       id: 2,
       title: "Evening Rituals for a Morning Glow",
-      description: "Discover the perfect 5-step night routine that works with your skin's natural regeneration cycle while you sleep.",
+      description: "Discover the perfect 5-step night routine that works with your skin&apos;s natural regeneration cycle while you sleep.",
     },
     {
       id: 3,
@@ -54,19 +54,19 @@ export default function Articles() {
             
             <div className="max-w-xl">
               <span className="text-[10px] font-bold tracking-widest uppercase text-emerald-400 mb-4 block">
-                Editor's Choice
+                Editor&apos;s Choice
               </span>
               <h3 className="font-playfair text-stone-800 text-4xl leading-tight mb-5">
                 Minimalist Skincare: How to Achieve More with Less
               </h3>
               <p className="text-gray-500 font-outfit leading-relaxed mb-6 text-lg">
-                The "Skinimalism" movement is taking over. We show you how to curate a high-performance routine with only three essential products.
+                The &quot;Skinimalism&quot; movement is taking over. We show you how to curate a high-performance routine with only three essential products.
               </p>
               <Link
                 href="#"
                 className="inline-flex items-center justify-center px-8 py-4 bg-rose-500 text-white font-semibold transition-all duration-300 hover:bg-rose-600 group"
               >
-                Read Ful Article
+                Read Full Article
                 <ArrowUpRight size={18} className="ml-3 transition-transform duration-300 group-hover:translate-x-1 group-hover:-translate-y-1" />
               </Link>
             </div>

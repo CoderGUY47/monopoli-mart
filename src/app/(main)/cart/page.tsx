@@ -21,7 +21,7 @@ export default function CartPage() {
           Your cart is empty
         </h1>
         <p className="text-gray-500 mb-10 max-w-md">
-          Looks like you haven't added anything to your cart yet. Discover our
+          Looks like you haven&apos;t added anything to your cart yet. Discover our
           premium products and start your glow journey today.
         </p>
         <Link href="/">

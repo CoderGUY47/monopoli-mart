@@ -15,13 +15,13 @@ export default function ExploreProducts() {
       <p className="text-gray-400 tracking-[0.3em] uppercase text-[10px] mb-3">
         Products
       </p>
-      <h2 className="text-[3.5rem] font-playfair text-stone-800 mb-16 tracking-tight">
+      <h2 className="text-6xl font-playfair text-stone-800 mb-16 tracking-tight">
         Explore <span className="italic font-bold">Products</span>
       </h2>
       <div className="flex items-center justify-between gap-4 md:gap-8">
         <button
           id="explore-prev"
-          className="w-12 h-12 rounded-full border border-rose-500 flex items-center justify-center text-rose-500 hover:bg-rose-500 hover:text-white transition-all shrink-0 z-10"
+          className="-mt-40 w-12 h-12 rounded-full flex items-center justify-center text-black/40 bg-black/5 backdrop-blur-md border border-black/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] hover:bg-rose-500 hover:text-white hover:scale-110 transition-all duration-300 shrink-0 z-10"
         >
           <ChevronLeft className="w-5 h-5" strokeWidth={1.5} />
         </button>
@@ -37,7 +37,7 @@ export default function ExploreProducts() {
               640: { slidesPerView: 2 },
               1024: { slidesPerView: 4 },
             }}
-            className="w-full !pb-12"
+            className="w-full pb-12!"
           >
             {exploreProducts.map((product) => (
               <SwiperSlide key={product.id}>
@@ -49,7 +49,7 @@ export default function ExploreProducts() {
                         src={product.image}
                         alt={product.name}
                         fill
-                        className="object-cover mix-blend-multiply opacity-80 group-hover:opacity-100 transition-opacity duration-500"
+                        className="object-cover opacity-100 transition-opacity duration-500"
                         sizes="(max-width: 640px) 100vw, 240px"
                       />
                     </div>
@@ -71,7 +71,10 @@ export default function ExploreProducts() {
             ))}
           </Swiper>
         </div>
-        <button id="explore-next" className="w-12 h-12 rounded-full border border-rose-500 flex items-center justify-center text-rose-500 hover:bg-rose-500 hover:text-white transition-all shrink-0 z-10">
+        <button 
+          id="explore-next" 
+          className="-mt-40 w-12 h-12 rounded-full flex items-center justify-center text-black/40 bg-black/5 backdrop-blur-md border border-black/20 shadow-[0_8px_32px_0_rgba(0,0,0,0.1)] hover:bg-rose-500 hover:text-white hover:scale-110 transition-all duration-300 shrink-0 z-10"
+        >
           <ChevronRight className="w-5 h-5" strokeWidth={1.5} />
         </button>
       </div>

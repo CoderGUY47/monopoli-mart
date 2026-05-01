@@ -18,6 +18,7 @@ export default function Newsletter() {
           placeholder="Your email" 
           className="flex-1 bg-transparent px-4 py-3 text-white placeholder-white/80 focus:outline-none font-outfit text-[13px]" 
           required
+          suppressHydrationWarning
         />
         <button 
           type="submit"

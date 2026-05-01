@@ -8,6 +8,7 @@ import img7 from "@/assets/vertical-7.jpg";
 import img8 from "@/assets/vertical-8.jpg";
 import img9 from "@/assets/vertical-9.jpg";
 import img10 from "@/assets/vertical-10.jpg";
+import img12 from "@/assets/vertical-12.jpg";
 
 export const exploreProducts = [
   {
@@ -53,7 +54,7 @@ export const exploreProducts = [
     image: img7,
     category: "BEAUTY",
   },
-  { id: 8, name: "Velvet Cushion", price: 65.0, image: img8, category: "HOME" },
+  { id: 8, name: "Velvet Cushion", price: 65.0, image: img12, category: "HOME" },
   {
     id: 9,
     name: "Silk Eyemask",
