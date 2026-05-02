@@ -13,19 +13,19 @@ export default function CartPage() {
 
   if (cart.length === 0) {
     return (
-      <div className="min-h-[70vh] flex flex-col items-center justify-center bg-rose-50/50 px-6 text-center">
-        <div className="w-24 h-24 bg-rose-100 rounded-full flex items-center justify-center mb-8">
-          <ShoppingBag className="w-10 h-10 text-rose-300" />
+      <div className="flex min-h-[70vh] flex-col items-center justify-center bg-rose-50/50 px-6 text-center">
+        <div className="mb-8 flex h-24 w-24 items-center justify-center rounded-full bg-rose-100">
+          <ShoppingBag className="h-10 w-10 text-rose-300" />
         </div>
-        <h1 className="text-4xl font-playfair text-[#1a2b23] mb-4">
+        <h1 className="font-playfair mb-4 text-4xl text-black">
           Your cart is empty
         </h1>
-        <p className="text-gray-500 mb-10 max-w-md">
-          Looks like you haven&apos;t added anything to your cart yet. Discover our
-          premium products and start your glow journey today.
+        <p className="mb-10 max-w-md text-gray-500">
+          Looks like you haven&apos;t added anything to your cart yet. Discover
+          our premium products and start your glow journey today.
         </p>
         <Link href="/">
-          <Button className="bg-[#1a2b23] hover:bg-[#0f1a15] text-white px-10 py-6 text-lg font-medium rounded-none">
+          <Button className="rounded-none bg-[#1a2b23] px-10 py-6 text-lg font-medium text-white hover:bg-[#0f1a15]">
             EXPLORE PRODUCTS
           </Button>
         </Link>
@@ -34,23 +34,24 @@ export default function CartPage() {
   }
 
   return (
-    <div className="bg-rose-50/30 min-h-screen py-24 px-6">
+    <div className="min-h-screen bg-black/10 px-6 py-24">
       <div className="container mx-auto max-w-[1440px]">
-        <h1 className="text-5xl font-playfair text-[#1a2b23] mb-12">
+        <h1 className="font-playfair mb-12 text-5xl text-black">
           Shopping <span className="italic">Cart</span>
         </h1>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
-          <div className="lg:col-span-2 space-y-8">
+        <div className="grid grid-cols-1 gap-16 lg:grid-cols-3">
+          <div className="space-y-8 lg:col-span-2">
             {cart.map((item) => (
               <div
                 key={item.id}
-                className="flex items-center gap-6 bg-white p-6 shadow-sm group hover:shadow-md transition-shadow relative"
+                className="group relative flex items-center gap-6 bg-white p-6 shadow-sm transition-shadow hover:shadow-md"
               >
-                <div className="relative w-32 h-40 bg-white border border-rose-100 overflow-hidden shrink-0">
+                <div className="relative h-40 w-32 overflow-hidden border border-rose-100 bg-white">
                   <Image
                     src={
-                      typeof item.image === "string" && !item.image.startsWith("/")
+                      typeof item.image === "string" &&
+                      !item.image.startsWith("/")
                         ? `/assets/${item.image}`
                         : item.image
                     }
@@ -61,14 +62,15 @@ export default function CartPage() {
                 </div>
 
                 <div className="flex-1">
-                  <h3 className="font-playfair text-xl text-[#1a2b23] mb-1">
+                  <h3 className="font-playfair mb-1 text-xl text-black">
                     {item.title}
                   </h3>
-                  <p className="text-gray-400 text-sm mb-4 capitalize">
+                  <p className="mb-4 text-sm text-gray-400 capitalize">
                     Category: Premium
                   </p>
-                  <div className="text-rose-600 font-bold text-lg mb-4">
-                    {item.price}
+                  <div className="mb-4 flex items-center gap-1 text-lg font-bold text-rose-600">
+                    <i className="fa-solid fa-bangladeshi-taka-sign text-[15px]"></i>
+                    {item.price.toString().replace(/[^0-9,]/g, "")}
                   </div>
 
                   <div className="flex items-center gap-4">
@@ -77,7 +79,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity - 1)
                         }
-                        className="p-2 hover:bg-gray-50 transition-colors"
+                        className="p-2 transition-colors hover:bg-gray-50"
                       >
                         <Minus size={16} />
                       </button>
@@ -88,7 +90,7 @@ export default function CartPage() {
                         onClick={() =>
                           updateQuantity(item.id, item.quantity + 1)
                         }
-                        className="p-2 hover:bg-gray-50 transition-colors"
+                        className="p-2 transition-colors hover:bg-gray-50"
                       >
                         <Plus size={16} />
                       </button>
@@ -98,7 +100,7 @@ export default function CartPage() {
 
                 <button
                   onClick={() => removeFromCart(item.id)}
-                  className="absolute top-6 right-6 text-gray-300 hover:text-red-500 transition-colors p-2"
+                  className="absolute top-6 right-6 p-2 text-gray-300 transition-colors hover:text-red-500"
                 >
                   <Trash2 size={20} />
                 </button>
@@ -107,15 +109,17 @@ export default function CartPage() {
           </div>
 
           <div className="lg:col-span-1">
-            <div className="bg-white p-8 shadow-sm border-t-4 border-rose-500">
-              <h2 className="text-2xl font-playfair font-bold text-[#1a2b23] mb-8">
+            <div className="border-t-4 border-rose-500 bg-white p-8 shadow-sm">
+              <h2 className="font-playfair mb-8 text-2xl font-bold text-black">
                 Order Summary
               </h2>
-
-              <div className="space-y-4 mb-8">
+              <div className="mb-8 space-y-4">
                 <div className="flex justify-between text-gray-500">
                   <span>Subtotal ({totalItems} items)</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <div className="flex items-center gap-1">
+                    <i className="fa-solid fa-bangladeshi-taka-sign text-xs"></i>
+                    {totalPrice.toLocaleString()}
+                  </div>
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span>Shipping</span>
@@ -123,29 +127,35 @@ export default function CartPage() {
                 </div>
                 <div className="flex justify-between text-gray-500">
                   <span>Taxes</span>
-                  <span>$0.00</span>
+                  <div className="flex items-center gap-1">
+                    <i className="fa-solid fa-bangladeshi-taka-sign text-xs"></i>
+                    0
+                  </div>
                 </div>
               </div>
 
-              <div className="border-t border-gray-100 pt-6 mb-10">
+              <div className="mb-10 border-t border-gray-100 pt-6">
                 <div className="flex justify-between text-xl font-bold text-[#1a2b23]">
                   <span>Total</span>
-                  <span>${totalPrice.toFixed(2)}</span>
+                  <div className="flex items-center gap-1 text-2xl">
+                    <i className="fa-solid fa-bangladeshi-taka-sign text-xl"></i>
+                    {totalPrice.toLocaleString()}
+                  </div>
                 </div>
-                <p className="text-[10px] text-gray-400 mt-1 uppercase tracking-widest font-bold">
+                <p className="mt-1 text-[10px] font-bold tracking-widest text-gray-400 uppercase">
                   Including VAT
                 </p>
               </div>
 
-              <Button className="w-full bg-[#1a2b23] hover:bg-[#0f1a15] text-white py-8 text-lg font-bold rounded-none group">
+              <Button className="group w-full rounded-none bg-[#1a2b23] py-8 text-lg font-bold text-white hover:bg-[#0f1a15]">
                 PROCEED TO CHECKOUT{" "}
-                <ArrowRight className="ml-3 group-hover:translate-x-2 transition-transform" />
+                <ArrowRight className="ml-3 transition-transform group-hover:translate-x-2" />
               </Button>
 
               <div className="mt-8 flex items-center justify-center gap-4">
-                <div className="w-10 h-6 bg-gray-100 rounded-sm"></div>
-                <div className="w-10 h-6 bg-gray-100 rounded-sm"></div>
-                <div className="w-10 h-6 bg-gray-100 rounded-sm"></div>
+                <div className="h-6 w-10 rounded-sm bg-gray-100"></div>
+                <div className="h-6 w-10 rounded-sm bg-gray-100"></div>
+                <div className="h-6 w-10 rounded-sm bg-gray-100"></div>
               </div>
             </div>
           </div>

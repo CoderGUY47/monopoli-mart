@@ -1,27 +1,26 @@
 "use client";
-
 import React from "react";
 
-const BANDS = [
-  "AESTHETIQUE",
-  "LUMIÈRE",
-  "ESSENCE",
-  "SILHOUETTE",
-  "ÉLÉGANCE"
-];
+const BRANDS = ["LUMIERE", "PURE", "GLOW", "AURA", "MUSE"];
 
 export default function BrandLogos() {
   return (
-    <section className="mt-14 mb-16 overflow-hidden flex flex-col items-center">
-      <div className="container mx-auto px-6 max-w-[1440px]">
-        <div className="flex flex-wrap items-center justify-center gap-8 md:gap-24">
-          {BANDS.map((brand, idx) => (
-            <div
+    <section className="border-y border-stone-100 bg-white py-24 select-none">
+      <div className="container mx-auto max-w-[1440px] px-6">
+        <div className="mb-10 text-center">
+          <span className="text-xs font-bold tracking-[0.5em] text-black/40 uppercase">
+            Trusted Partners
+          </span>
+        </div>
+
+        <div className="grid grid-cols-2 items-center justify-items-center gap-x-8 gap-y-16 md:grid-cols-3 lg:grid-cols-5">
+          {BRANDS.map((brand, idx) => (
+            <span
               key={idx}
-              className="text-xl md:text-2xl font-sans font-bold text-emerald-800/50 cursor-default tracking-wider"
+              className="font-playfair cursor-default text-2xl font-black tracking-tighter text-stone-200 transition-colors duration-500 hover:text-rose-500 md:text-3xl"
             >
               {brand}
-            </div>
+            </span>
           ))}
         </div>
       </div>

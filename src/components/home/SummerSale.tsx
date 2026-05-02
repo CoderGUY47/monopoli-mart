@@ -7,9 +7,8 @@ export default function SummerSale() {
   const images = [1, 2, 3, 4, 5];
 
   return (
-    <section className="relative w-full overflow-hidden bg-rose-50 h-[450px] md:h-[450px] flex items-center justify-center">
-      
-      <div className="absolute inset-0 flex items-start z-0 opacity-99">
+    <section className="relative flex h-[450px] w-full items-center justify-center overflow-hidden bg-rose-50 md:h-[450px]">
+      <div className="absolute inset-0 z-0 flex items-start opacity-99">
         <style>{`
           @keyframes scroll-infinite-bg {
             0% { transform: translateX(0); }
@@ -23,11 +22,10 @@ export default function SummerSale() {
         `}</style>
 
         <div className="slider-bg-track gap-0 px-2">
-          
           {[...images, ...images, ...images].map((num, idx) => (
             <div
               key={idx}
-              className="relative w-[300px] md:w-[400px] h-[450px] overflow-hidden"
+              className="relative h-[450px] w-[300px] overflow-hidden md:w-[400px]"
             >
               <Image
                 src={require(`@/assets/horizontal-${num}.jpg`).default}
@@ -36,24 +34,25 @@ export default function SummerSale() {
                 className="object-cover"
                 sizes="(max-width: 768px) 300px, 400px"
               />
-              <div className="absolute inset-0 bg-rose-500/10 mix-blend-overlay pointer-events-none" />
+              <div className="pointer-events-none absolute inset-0 bg-rose-500/10 mix-blend-overlay" />
             </div>
           ))}
         </div>
       </div>
 
-      
-      <div className="relative z-10 bg-black/70 w-full p-0 md:p-0 shadow-2xl flex flex-col items-center justify-center duration-500">
-        <div className="bg-rose-500/50 w-[400px] h-[450px] flex flex-col p-4 md:p-5 items-center justify-center">
-        <h2 className="text-6xl md:text-8xl font-extrabold font-playfair text-white text-center transform leading-24 tracking-widest drop-shadow-md">
-          70% <br />
-          <span className="text-white font-bold text-8xl md:text-9xl">Sale</span>
-        </h2>
+      <div className="relative z-10 flex w-full flex-col items-center justify-center bg-black/70 p-0 shadow-2xl duration-500 md:p-0">
+        <div className="flex h-[450px] w-[400px] flex-col items-center justify-center bg-black/60 p-4 md:p-5">
+          <h2 className="font-playfair transform text-center text-6xl leading-24 font-extrabold tracking-widest text-white drop-shadow-md md:text-8xl">
+            70% <br />
+            <span className="text-8xl font-bold text-white md:text-9xl">
+              Sale
+            </span>
+          </h2>
 
-        <button className="mt-6 bg-black hover:bg-white text-white hover:text-black px-8 py-4 text-sm font-bold uppercase tracking-widest inline-flex items-center">
-          Claim Promo
-          <ArrowUpRight className="w-5 h-5 ml-2 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
-        </button>
+          <button className="mt-6 inline-flex items-center bg-black px-8 py-4 text-sm font-bold tracking-widest text-white uppercase hover:bg-white hover:text-black">
+            Claim Promo
+            <ArrowUpRight className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+          </button>
         </div>
       </div>
     </section>

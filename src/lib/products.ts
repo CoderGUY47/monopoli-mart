@@ -2,6 +2,7 @@ import fansData from "@/data/fans.json";
 import { exploreProducts } from "@/data/exploreProducts";
 
 export interface Product {
+  id: string;
   name: string;
   price: string | number;
   image: any;
@@ -12,15 +13,16 @@ export interface Product {
 }
 
 export function getProductById(id: string): Product {
-  let targetProduct = fansData.find((item) => item.product_link.endsWith(id));
-  if (!targetProduct) {
-    targetProduct = exploreProducts.find(
-      (item) => item.id.toString() === id,
-    ) as any;
-  }
+  // 1. Find product in multiple data sources
+  const target =
+    (fansData as any[]).find(
+      (f) => f.id === id || f.product_link?.endsWith(id),
+    ) || exploreProducts.find((p) => p.id.toString() === id);
 
-  if (!targetProduct) {
+  // 2. Fallback if product not found
+  if (!target) {
     return {
+      id,
       name: "Premium Product",
       price: 199.99,
       image: "/assets/vertical-1.jpg",
@@ -31,29 +33,27 @@ export function getProductById(id: string): Product {
     };
   }
 
-  //figure out the image path
-  const rawImage = (targetProduct as any).image;
-  let finalImage = rawImage;
-
-  if (typeof rawImage === "string") {
-    const isExternalLink = rawImage.startsWith("http");
-    const isAbsolutePath = rawImage.startsWith("/");
-
-    if (!isExternalLink && !isAbsolutePath) {
-      finalImage = "/assets/" + rawImage;
-    }
+  // 3. Resolve Image Path
+  let finalImage = target.image;
+  if (
+    typeof finalImage === "string" &&
+    !finalImage.startsWith("http") &&
+    !finalImage.startsWith("/")
+  ) {
+    finalImage = `/assets/${finalImage}`;
   }
 
-  //return the final clean product object
+  // 4. Return normalized product object
   return {
-    name: (targetProduct as any).title || (targetProduct as any).name,
-    price: (targetProduct as any).price,
+    id,
+    name: target.title || target.name,
+    price: target.price,
     image: finalImage,
-    category: (targetProduct as any).category || "FASHION",
-    rating: (targetProduct as any).rating || 5,
-    reviews: (targetProduct as any).reviews || 128,
+    category: target.category || "FASHION",
+    rating: target.rating || 5,
+    reviews: target.reviews || 128,
     description:
-      (targetProduct as any).description ||
+      target.description ||
       "Beautiful and exquisite design perfect for your daily aesthetic.",
   };
 }

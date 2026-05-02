@@ -5,11 +5,15 @@ import { useSpring, animated } from "@react-spring/web";
 
 interface ParallaxSectionProps {
   children: React.ReactNode;
-  speed?: number; 
+  speed?: number;
   className?: string;
 }
 
-export default function ParallaxSection({ children, speed = 0.15, className = "" }: ParallaxSectionProps) {
+export default function ParallaxSection({
+  children,
+  speed = 0.15,
+  className = "",
+}: ParallaxSectionProps) {
   const ref = useRef<HTMLDivElement>(null);
   const [scrollY, setScrollY] = useState(0);
   const [elementTop, setElementTop] = useState(0);

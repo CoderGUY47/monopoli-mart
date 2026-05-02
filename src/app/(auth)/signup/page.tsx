@@ -12,17 +12,19 @@ import { useRouter } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
-
-
 export default function SignupPage() {
-  const router = useRouter();  
+  const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-
+  const handleGoogleSignUp = async () => {
+    await authClient.signIn.social({
+      provider: "google",
+    });
+  };
   const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     setLoading(true);
-    setError("")
+    setError("");
 
     const formData = new FormData(e.currentTarget);
     const name = formData.get("name") as string;
@@ -30,35 +32,40 @@ export default function SignupPage() {
     const email = formData.get("email") as string;
     const password = formData.get("password") as string;
 
-    await authClient.signUp.email({
-      name,
-      image,
-      email,
-      password,
-    },{
-      onSuccess: (ctx) => {
-            router.push("/login")
+    await authClient.signUp.email(
+      {
+        name,
+        image,
+        email,
+        password,
+      },
+      {
+        onSuccess: (ctx) => {
+          router.push("/login");
         },
         onError: (ctx) => {
-            setError(ctx.error.message || "Failed to create account")
+          const message = ctx.error.message || "Failed to create account";
+          //clean up better auth field markers like [body.email] for users
+          const cleanMessage = message.replace(/\[.*?\]\s*/g, "");
+          setError(cleanMessage);
         },
-    });
-    setLoading(false)
+      },
+    );
+    setLoading(false);
   };
 
   return (
-    <div className="min-h-screen w-full flex items-center justify-center bg-rose-50/50 px-4 py-8">
+    <div className="flex min-h-screen w-full items-center justify-center bg-rose-50/50 px-4 py-8">
       <Link
         href="/"
-        className="absolute top-8 left-8 flex items-center text-[#1a2b23] hover:gap-2 transition-all font-medium group"
+        className="group absolute top-8 left-8 flex items-center font-medium text-[#1a2b23] transition-all hover:gap-2"
       >
-        <ArrowLeft className="w-4 h-4 mr-2 group-hover:mr-0" /> Back to Home
+        <ArrowLeft className="mr-2 h-4 w-4 group-hover:mr-0" /> Back to Home
       </Link>
 
-      <Card className="w-full max-w-5xl overflow-hidden border-none shadow-2xl rounded-none md:rounded-sm">
-        <CardContent className="grid p-0 md:grid-cols-2 min-h-[600px]">
-          
-          <div className="relative hidden md:block overflow-hidden order-2">
+      <Card className="w-full max-w-5xl overflow-hidden rounded-none border-none shadow-2xl md:rounded-sm">
+        <CardContent className="grid min-h-[600px] p-0 md:grid-cols-2">
+          <div className="relative order-2 hidden overflow-hidden md:block">
             <Image
               src={require("@/assets/vertical-15.jpg").default}
               alt="Natural Beauty"
@@ -67,31 +74,30 @@ export default function SignupPage() {
               priority
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#604235]/60 to-transparent"></div>
-            <div className="absolute bottom-12 left-12 right-12 text-white">
-              <h2 className="text-3xl font-playfair font-bold mb-4 leading-tight text-right">
+            <div className="absolute right-12 bottom-12 left-12 text-white">
+              <h2 className="font-playfair mb-4 text-right text-3xl leading-tight font-bold">
                 Your journey to <span className="italic">radiant</span> skin
                 starts here.
               </h2>
-              <p className="text-white/80 font-outfit text-sm max-w-xs ml-auto text-right">
+              <p className="font-outfit ml-auto max-w-xs text-right text-sm text-white/80">
                 Create an account to track orders and save your favorite glow
                 products.
               </p>
             </div>
           </div>
 
-          
-          <div className="p-8 md:p-12 flex flex-col justify-center bg-white order-1">
+          <div className="order-1 flex flex-col justify-center bg-white p-8 md:p-12">
             <div className="mb-8 text-center md:text-left">
-              <h1 className="text-4xl font-playfair font-bold text-[#1d1d1b] mb-3 text-nowrap">
+              <h1 className="font-playfair mb-3 text-4xl font-bold text-nowrap text-[#1d1d1b]">
                 Join Monopoly-Mart
               </h1>
-              <p className="text-gray-500 font-outfit">
+              <p className="font-outfit text-gray-500">
                 Create your premium account in seconds.
               </p>
             </div>
 
             {error && (
-              <div className="p-4 mb-6 text-sm text-red-600 bg-red-50 border border-red-100 rounded-sm">
+              <div className="mb-6 rounded-sm border border-red-100 bg-red-50 p-4 text-sm text-red-600">
                 {error}
               </div>
             )}
@@ -100,7 +106,7 @@ export default function SignupPage() {
               <div className="space-y-1.5">
                 <Label
                   htmlFor="name"
-                  className="text-[#604235] font-bold text-[10px] uppercase tracking-[0.2em]"
+                  className="text-[10px] font-bold tracking-[0.2em] text-[#604235] uppercase"
                 >
                   Full Name
                 </Label>
@@ -108,15 +114,16 @@ export default function SignupPage() {
                   id="name"
                   name="name"
                   type="text"
-                  placeholder="Admin CoderGUY47"
-                  className="rounded-none border-0 border-b border-gray-200 focus:border-[#604235] focus:ring-0 h-10 px-0 bg-transparent transition-all duration-300 placeholder:text-gray-300"
+                  placeholder="Enter your full name"
+                  required
+                  className="h-10 rounded-none border-0 border-b border-gray-200 bg-transparent px-0 transition-all duration-300 placeholder:text-gray-300 focus:border-rose-500 focus:ring-0"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <Label
                   htmlFor="image"
-                  className="text-[#604235] font-bold text-[10px] uppercase tracking-[0.2em]"
+                  className="text-[10px] font-bold tracking-[0.2em] text-[#604235] uppercase"
                 >
                   Profile Image URL
                 </Label>
@@ -125,14 +132,14 @@ export default function SignupPage() {
                   name="image"
                   type="text"
                   placeholder="https://example.com/avatar.jpg"
-                  className="rounded-none border-0 border-b border-gray-200 focus:border-[#604235] focus:ring-0 h-10 px-0 bg-transparent transition-all duration-300 placeholder:text-gray-300"
+                  className="h-10 rounded-none border-0 border-b border-gray-200 bg-transparent px-0 transition-all duration-300 placeholder:text-gray-300 focus:border-rose-500 focus:ring-0"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <Label
                   htmlFor="email"
-                  className="text-[#604235] font-bold text-[10px] uppercase tracking-[0.2em]"
+                  className="text-[10px] font-bold tracking-[0.2em] text-[#604235] uppercase"
                 >
                   Email Address
                 </Label>
@@ -141,15 +148,15 @@ export default function SignupPage() {
                   name="email"
                   type="email"
                   placeholder="username@gmail.com"
-                  className="rounded-none border-0 border-b border-gray-200 focus:border-[#604235] focus:ring-0 h-10 px-0 bg-transparent transition-all duration-300 placeholder:text-gray-300"
+                  required
+                  className="h-10 rounded-none border-0 border-b border-gray-200 bg-transparent px-0 transition-all duration-300 placeholder:text-gray-300 focus:border-rose-500 focus:ring-0"
                 />
               </div>
 
               <div className="space-y-1.5">
                 <Label
                   htmlFor="password"
-                  college-info=""
-                  className="text-[#604235] font-bold text-[10px] uppercase tracking-[0.2em]"
+                  className="text-[10px] font-bold tracking-[0.2em] text-[#604235] uppercase"
                 >
                   Password
                 </Label>
@@ -157,34 +164,37 @@ export default function SignupPage() {
                   id="password"
                   name="password"
                   type="password"
-                  placeholder="••••••••"
-                  className="rounded-none border-0 border-b border-gray-200 focus:border-[#604235] focus:ring-0 h-10 px-0 bg-transparent transition-all duration-300 placeholder:text-gray-300"
+                  placeholder="******"
+                  required
+                  minLength={11}
+                  className="h-10 rounded-none border-0 border-b border-gray-200 bg-transparent px-0 transition-all duration-300 placeholder:text-gray-300 focus:border-rose-500 focus:ring-0"
                 />
               </div>
 
-              <div className="pt-4 space-y-4">
+              <div className="space-y-4 pt-4">
                 <Button
                   type="submit"
                   disabled={loading}
-                  className="w-full bg-[#1a2b23] hover:bg-rose-600 text-white font-bold h-14 rounded-none transition-all duration-500 tracking-widest text-xs"
+                  className="h-14 w-full rounded-none bg-[#1a2b23] text-xs font-bold tracking-widest text-white transition-all duration-500 hover:bg-rose-600"
                 >
                   {loading ? "Creating Account ..." : "Create Account"}
                 </Button>
 
                 <div className="relative flex items-center py-2">
                   <div className="grow border-t border-gray-100"></div>
-                  <span className="shrink mx-4 text-[9px] uppercase tracking-widest text-gray-400 font-medium">
+                  <span className="mx-4 shrink text-[9px] font-medium tracking-widest text-gray-400 uppercase">
                     Or continue with
                   </span>
                   <div className="grow border-t border-gray-100"></div>
                 </div>
 
                 <Button
+                  onClick={handleGoogleSignUp}
                   type="button"
                   variant="outline"
-                  className="w-full border-gray-200 rounded-none h-14 hover:bg-gray-50 flex items-center justify-center gap-3 font-bold text-[10px] tracking-widest text-gray-700 transition-all duration-300"
+                  className="flex h-14 w-full items-center justify-center gap-3 rounded-none border-gray-200 text-[10px] font-bold tracking-widest text-gray-700 transition-all duration-300 hover:bg-gray-50"
                 >
-                  <FcGoogle className="w-5 h-5" />
+                  <FcGoogle className="h-5 w-5" />
                   GOOGLE
                 </Button>
               </div>
@@ -194,7 +204,7 @@ export default function SignupPage() {
               Already have an account?{" "}
               <Link
                 href="/login"
-                className="text-rose-500 font-bold italic hover:underline"
+                className="font-bold text-rose-500 italic hover:underline"
               >
                 Sign In
               </Link>

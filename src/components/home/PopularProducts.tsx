@@ -5,12 +5,25 @@ import Image from "next/image";
 import Link from "next/link";
 import { Star } from "lucide-react";
 import { useCart } from "@/context/CartContext";
+import { authClient } from "@/lib/auth-client";
+import { toast } from "react-toastify";
 
+// This component displays the top 3 most popular products
 export default function PopularProducts() {
   const { addToCart } = useCart();
+  const session = authClient.useSession();
+  const [localUser, setLocalUser] = useState<any>(null);
+
+  useEffect(() => {
+    const stored = localStorage.getItem("user_session");
+    if (stored) setLocalUser(JSON.parse(stored));
+  }, []);
+
+  const user = session.data?.user || localUser;
   const [popularFans, setPopularFans] = useState<any[]>([]);
   const [loading, setLoading] = useState(true);
 
+  // loading the product data from the api
   useEffect(() => {
     async function fetchFans() {
       try {
@@ -22,7 +35,7 @@ export default function PopularProducts() {
           setPopularFans(data.fans.slice(0, 3));
         }
       } catch (error) {
-        console.error("Failed to fetch fans API:", error);
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -31,84 +44,102 @@ export default function PopularProducts() {
   }, []);
 
   return (
-    <section className="bg-rose-50 py-24 px-6 relative z-10">
+    <section className="relative z-10 bg-rose-50 px-6 py-24">
       <div className="container mx-auto max-w-[1440px]">
-        
-        
-        <div className="flex flex-col items-center mb-16 text-center">
-          <h2 className="text-5xl md:text-6xl font-playfair text-stone-800 mb-4">
-            Popular <span className="italic font-bold">Products</span>
+        {/* header section for popular products */}
+        <div className="mb-16 flex flex-col items-center text-center">
+          <h2 className="font-playfair mb-4 text-5xl text-stone-800 md:text-6xl">
+            Popular <span className="font-bold italic">Products</span>
           </h2>
-          <p className="text-gray-500 font-outfit max-w-lg">
-            Discover our most loved products, handpicked for you. Experience top-tier cooling with these fan-favorites.
+          <p className="font-outfit max-w-lg text-xl text-gray-500">
+            Our most loved products, handpicked for your collection.
           </p>
         </div>
 
-        
+        {/* if loading is true it will show a spinner */}
         {loading ? (
           <div className="flex justify-center py-20">
-            <div className="w-10 h-10 border-4 border-rose-500 border-t-transparent rounded-full animate-spin"></div>
+            <div className="h-10 w-10 animate-spin rounded-full border-4 border-rose-500 border-t-transparent"></div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {popularFans.map((product, idx) => (
-            <div key={idx} className="group relative bg-white flex flex-col p-6 shadow-sm hover:shadow-xl transition-shadow duration-300">
-              
-              
-              <div className="relative w-full aspect-square bg-[#f9f6f3] mb-6 overflow-hidden flex items-center justify-center">
-                <Image
-                  src={product.image ? require(`@/assets/${product.image}`).default : product.image_url}
-                  alt={product.title}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
-                />
-              </div>
-
-              
-              <div className="flex flex-col grow">
-                
-                <div className="flex text-emerald-400 gap-1 mb-2">
-                  {[...Array(5)].map((_, i) => (
-                    <Star key={i} size={14} fill="currentColor" />
-                  ))}
-                </div>
-                
-                
-                <h3 className="font-playfair text-lg text-stone-800 font-bold mb-2 line-clamp-2 leading-snug">
-                  {product.title}
-                </h3>
-                
-                
-                <div className="text-base text-gray-700 font-outfit font-medium mb-6 mt-auto">
-                  {product.price}
+          /* display the products in a responsive grid */
+          <div className="grid grid-cols-1 gap-8 md:grid-cols-2 lg:grid-cols-3">
+            {popularFans.map((product, idx) => (
+              <div
+                key={idx}
+                className="group relative flex flex-col bg-white p-6 shadow-sm transition-shadow duration-300 hover:shadow-xl"
+              >
+                {/* product image with hover zoom effect */}
+                <div className="relative mb-6 flex h-[400px] w-full items-center justify-center overflow-hidden bg-[#f9f6f3]">
+                  <Image
+                    src={
+                      product.image
+                        ? require(`@/assets/${product.image}`).default
+                        : product.image_url
+                    }
+                    alt={product.title}
+                    fill
+                    className="object-cover transition-transform duration-500 group-hover:scale-105"
+                    sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+                  />
                 </div>
 
-                
-                <div className="flex flex-col gap-2 mt-auto">
-                  <button
-                    onClick={() => addToCart(product)}
-                    className="w-full bg-rose-500 text-white font-outfit text-sm uppercase tracking-wider py-3 px-4 text-center transition-colors duration-300 hover:bg-rose-600"
-                  >
-                    Add to Cart
-                  </button>
-                  <Link
-                    href={product.product_link || `/product/${product.id}`}
-                    className="w-full border border-rose-500 text-rose-500 font-outfit text-sm uppercase tracking-wider py-3 px-4 text-center transition-colors duration-300 hover:bg-rose-500 hover:text-white"
-                  >
-                    View Details
-                  </Link>
+                <div className="flex grow flex-col">
+                  {/* product title */}
+                  <h3 className="font-playfair mb-2 line-clamp-2 text-lg leading-snug font-bold text-stone-800">
+                    {product.title}
+                  </h3>
+
+                  {/* pricing section with taka sign */}
+                  <div className="font-outfit mt-auto mb-6 flex flex-row items-center justify-between text-base font-medium text-gray-700">
+                    <div className="flex items-center gap-1">
+                      <i className="fa-solid fa-bangladeshi-taka-sign text-[12px]"></i>
+                      <span>
+                        {product.price.toString().replace(/[^0-9,]/g, "")}
+                      </span>
+                    </div>
+                    {/* rating stars */}
+                    <div className="flex items-center gap-1 text-emerald-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={12} fill="currentColor" />
+                      ))}
+                    </div>
+                  </div>
+
+                  {/* action buttons for cart and details */}
+                  <div className="mt-auto flex flex-col gap-2">
+                    <button
+                      onClick={() => {
+                        /* check if user is logged in before adding to cart */
+                        if (!user) {
+                          toast.info("Please login to add items to cart");
+                          return;
+                        }
+                        addToCart(product);
+                      }}
+                      className="font-outfit w-full bg-rose-500 px-4 py-3 text-center text-sm tracking-wider text-white uppercase transition-colors duration-300 hover:bg-rose-600"
+                    >
+                      Add to Cart
+                    </button>
+                    <Link
+                      href={product.product_link || `/product/${product.id}`}
+                      className="font-outfit w-full border border-rose-500 px-4 py-3 text-center text-sm tracking-wider text-rose-500 uppercase transition-colors duration-300 hover:bg-rose-500 hover:text-white"
+                    >
+                      View Details
+                    </Link>
+                  </div>
                 </div>
               </div>
-              
-            </div>
-          ))}
+            ))}
           </div>
         )}
 
-        
+        {/* link to see more products */}
         <div className="mt-16 flex justify-center">
-          <Link href="/products" className="bg-transparent border border-rose-500 text-rose-500 hover:bg-rose-500 hover:text-white px-10 py-4 inline-flex items-center font-medium transition-colors">
+          <Link
+            href="/products"
+            className="inline-flex items-center border border-rose-500 bg-transparent px-10 py-4 font-medium text-rose-500 transition-colors hover:bg-rose-500 hover:text-white"
+          >
             View All Products
           </Link>
         </div>

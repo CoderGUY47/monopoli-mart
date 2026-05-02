@@ -10,6 +10,7 @@ import "swiper/css";
 import "swiper/css/pagination";
 import { useSpring, animated } from "@react-spring/web";
 import { useEffect, useState } from "react";
+import image from "@/assets/vertical-1.jpg";
 
 const reviews = [
   {
@@ -71,16 +72,15 @@ export default function Testimonials() {
 
   return (
     <>
-      
-      <section className="bg-rose-500 relative mt-[180px] mb-[120px] z-30 overflow-visible py-20">
-        <div className="container mx-auto px-8 max-w-[1440px] relative">
-          <div className="grid grid-cols-3 gap-0 items-center">
-
-            
-            <div className="flex flex-col justify-between gap-14 z-10">
-              <h2 className="text-6xl md:text-7xl font-playfair text-white leading-[1.05] italic">
-                What<br />
-                They <span className="not-italic font-bold">Say</span><br />
+      <section className="relative z-30 mt-[180px] mb-[120px] overflow-visible bg-rose-500 py-20">
+        <div className="relative container mx-auto max-w-[1440px] px-8">
+          <div className="grid grid-cols-3 items-center gap-0">
+            <div className="z-10 flex flex-col justify-between gap-14">
+              <h2 className="font-playfair text-6xl leading-[1.05] text-white italic md:text-7xl">
+                What
+                <br />
+                They <span className="font-bold not-italic">Say</span>
+                <br />
                 <span className="not-italic">About Us</span>
               </h2>
 
@@ -88,91 +88,111 @@ export default function Testimonials() {
                 <Image
                   src={leftCard}
                   alt="comment card"
-                  className="w-full h-auto object-contain"
-                  style={{ filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))" }}
+                  className="h-auto w-full object-contain"
+                  style={{
+                    filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))",
+                  }}
                   priority
                 />
-                <div className="absolute inset-0 px-7 pt-6 pb-12 flex flex-col justify-start">
-                  <div className="flex items-center justify-between mb-3">
+                <div className="absolute inset-0 flex flex-col justify-start p-4">
+                  <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
-                        <span className="text-[10px] text-rose-500 font-bold">MB</span>
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                        <span className="text-[10px] font-bold text-rose-500">
+                          MB
+                        </span>
                       </div>
-                      <span className="font-playfair text-stone-800 font-bold text-sm">Maya B.</span>
+                      <span className="font-playfair text-sm font-bold text-stone-800">
+                        Maya B.
+                      </span>
                     </div>
-                    <div className="flex text-emerald-400 gap-0.5">
-                      {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" />)}
+                    <div className="flex gap-0.5 text-emerald-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={10} fill="currentColor" />
+                      ))}
                     </div>
                   </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed font-outfit">
-                    The bag looks even better in person. It instantly leveled up my outfit-now I can not go anywhere without it.
+                  <p className="font-outfit text-sm leading-relaxed text-gray-500">
+                    The bag looks even better in person. It instantly leveled up
+                    my outfit-now I can not go anywhere without it.
                   </p>
                 </div>
               </div>
             </div>
 
-            
-            <div className="flex flex-col items-center justify-center relative z-50">
+            <div className="relative z-50 flex flex-col items-center justify-center">
               <animated.div
-                style={{ ...portraitSpring, marginTop: "80px", marginBottom: "-380px" }}
+                style={{
+                  ...portraitSpring,
+                  marginTop: "80px",
+                  marginBottom: "-380px",
+                }}
                 className="relative"
               >
-                <div className="w-[380px] h-[750px] flex items-center justify-center shadow-[0_60px_120px_-20px_rgba(0,0,0,0.55)] overflow-hidden relative">
+                <div className="relative flex h-[750px] w-[380px] items-center justify-center overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.55)]">
                   <Image
-                    src={require("@/assets/vertical-1.jpg").default}
+                    src={image}
                     alt="Fashion model"
                     fill
                     className="object-cover"
                   />
                   <div className="absolute inset-0 bg-linear-to-t from-black/35 to-transparent"></div>
                 </div>
-                <div className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/2 w-16 h-16 bg-rose-500 text-white rounded-full flex items-center justify-center border-4 border-rose-500 z-50 shadow-[0_12px_30px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-110">
+                <div className="absolute bottom-0 left-1/2 z-50 flex h-16 w-16 -translate-x-1/2 translate-y-1/2 items-center justify-center rounded-full border-4 border-rose-500 bg-rose-500 text-white shadow-[0_12px_30px_rgba(0,0,0,0.5)] transition-transform duration-300 hover:scale-110">
                   <ChevronDown size={28} />
                 </div>
               </animated.div>
             </div>
 
-            
-            <div className="flex flex-col justify-between gap-14 items-end z-10">
+            <div className="z-10 flex flex-col items-end justify-between gap-14">
               <div className="relative w-full max-w-[380px] transform transition-all duration-500 hover:-translate-y-1">
                 <Image
                   src={rightCard}
                   alt="comment card"
-                  className="w-full h-auto object-contain"
-                  style={{ filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))" }}
+                  className="h-auto w-full object-contain"
+                  style={{
+                    filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))",
+                  }}
                   priority
                 />
-                <div className="absolute inset-0 px-7 pt-6 pb-12 flex flex-col justify-start">
-                  <div className="flex items-center justify-between mb-3">
+                <div className="absolute inset-0 flex flex-col justify-start p-4">
+                  <div className="mb-3 flex items-center justify-between">
                     <div className="flex items-center gap-2">
-                      <div className="w-8 h-8 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
-                        <span className="text-[10px] text-rose-500 font-bold">AS</span>
+                      <div className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                        <span className="text-[10px] font-bold text-rose-500">
+                          AS
+                        </span>
                       </div>
-                      <span className="font-playfair text-stone-800 font-bold text-sm">Aurora S.</span>
+                      <span className="font-playfair text-sm font-bold text-stone-800">
+                        Aurora S.
+                      </span>
                     </div>
-                    <div className="flex text-emerald-400 gap-0.5">
-                      {[...Array(5)].map((_, i) => <Star key={i} size={10} fill="currentColor" />)}
+                    <div className="flex gap-0.5 text-emerald-400">
+                      {[...Array(5)].map((_, i) => (
+                        <Star key={i} size={10} fill="currentColor" />
+                      ))}
                     </div>
                   </div>
-                  <p className="text-[11px] text-gray-500 leading-relaxed font-outfit">
-                    The bag looks even better in person. It instantly leveled up my outfit-now I can not go anywhere without it.
+                  <p className="font-outfit text-[11px] leading-relaxed text-gray-500">
+                    The bag looks even better in person. It instantly leveled up
+                    my outfit-now I can not go anywhere without it.
                   </p>
                 </div>
               </div>
-              <h2 className="text-6xl md:text-7xl font-playfair text-white leading-[1.05] text-right">
-                Trust<br />
-                <span className="italic font-bold">Their</span><br />
+              <h2 className="font-playfair text-right text-6xl leading-[1.05] text-white md:text-7xl">
+                Trust
+                <br />
+                <span className="font-bold italic">Their</span>
+                <br />
                 Voices
               </h2>
             </div>
-
           </div>
         </div>
       </section>
 
-      
       <section className="bg-rose-50 py-20">
-        <div className="container mx-auto px-8 max-w-[1440px]">
+        <div className="container mx-auto max-w-[1440px] px-8">
           <style>{`
             .review-swiper .swiper-pagination {
               position: relative;
@@ -201,8 +221,7 @@ export default function Testimonials() {
             {reviews.map((r) => (
               <SwiperSlide key={r.id}>
                 <div className="py-4">
-                  
-                  <div className="flex text-emerald-400 gap-1 mb-3">
+                  <div className="mb-3 flex gap-1 text-emerald-400">
                     {[...Array(5)].map((_, i) => (
                       <Star
                         key={i}
@@ -213,15 +232,19 @@ export default function Testimonials() {
                       />
                     ))}
                   </div>
-                  
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 rounded-full bg-rose-100 flex items-center justify-center shrink-0">
-                      <span className="text-xs text-rose-500 font-bold">{r.initials}</span>
+
+                  <div className="mb-4 flex items-center gap-3">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-rose-100">
+                      <span className="text-xs font-bold text-rose-500">
+                        {r.initials}
+                      </span>
                     </div>
-                    <span className="font-playfair text-stone-800 font-semibold text-lg">{r.name}</span>
+                    <span className="font-playfair text-lg font-semibold text-stone-800">
+                      {r.name}
+                    </span>
                   </div>
-                  
-                  <p className="text-sm text-gray-500 leading-relaxed font-outfit">
+
+                  <p className="font-outfit text-sm leading-relaxed text-gray-500">
                     {r.text}
                   </p>
                 </div>

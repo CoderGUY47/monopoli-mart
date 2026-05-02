@@ -1,5 +1,6 @@
 [
   {
+    "id": "jisulife-handheld-fan-life10",
     "title": "JisuLife Handheld Fan Life10 – 4000mAh Battery, Up to 22 Hours Runtime, 5 Speed",
     "price": "৳ 2,190",
     "product_link": "/product/jisulife-handheld-fan-life10",
@@ -9,6 +10,7 @@
     "image": "fan-1.jpg"
   },
   {
+    "id": "jisulife-handheld-fan-pro1",
     "title": "JisuLife Handheld Fan Pro1 Youth Edition – 100 Speed Adjustable, 3600mAh",
     "price": "৳ 3,790",
     "product_link": "/product/jisulife-handheld-fan-pro1",
@@ -18,6 +20,7 @@
     "image": "fan-2.jpg"
   },
   {
+    "id": "jisulife-life-5-plus",
     "title": "JISULIFE Life 5 Plus (FA43) – 6000mAh Battery, USB Rechargeable",
     "price": "৳ 2,290",
     "original_price": "৳ 2,300",
@@ -29,6 +32,7 @@
     "image": "fan-3.jpg"
   },
   {
+    "id": "jisulife-fa53-pro1s",
     "title": "JisuLife FA53 Pro1S Handheld Fan | The Ultimate Cooling Solution",
     "price": "৳ 4,790",
     "original_price": "৳ 5,900",
@@ -40,6 +44,7 @@
     "image": "fan-4.jpg"
   },
   {
+    "id": "jisulife-fa49",
     "title": "JISULIFE FA49 2000mAh USB Rechargeable Powerful Handheld Fan",
     "price": "৳ 1,150",
     "original_price": "৳ 1,350",

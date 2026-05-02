@@ -4,7 +4,6 @@ import { Play, ArrowUpRight } from "lucide-react";
 import Image from "next/image";
 import { useSpring, animated } from "@react-spring/web";
 
-
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, EffectFade } from "swiper/modules";
 import "swiper/css";
@@ -30,18 +29,17 @@ const Banner = () => {
 
   return (
     <section className="relative min-h-screen w-full overflow-hidden bg-transparent">
-      
       <div className="absolute inset-0 z-0">
         <Swiper
           modules={[Autoplay, EffectFade]}
           effect="fade"
           loop={true}
           autoplay={{ delay: 6000, disableOnInteraction: false }}
-          className="w-full h-full"
+          className="h-full w-full"
         >
           {[1, 2, 3, 4, 5].map((num) => (
             <SwiperSlide key={num}>
-              <div className="relative w-full h-full">
+              <div className="relative h-full w-full">
                 <Image
                   src={require(`@/assets/horizontal-${num}.jpg`).default}
                   alt={`Background ${num}`}
@@ -49,38 +47,37 @@ const Banner = () => {
                   className="object-cover"
                   priority={num === 1}
                 />
-                
-                <div className="absolute inset-0 bg-black/40 z-10" />
+
+                <div className="absolute inset-0 z-10 bg-black/40" />
               </div>
             </SwiperSlide>
           ))}
         </Swiper>
       </div>
 
-      <div className="pt-24 pb-0 px-8 relative container mx-auto max-w-[1440px] z-10">
-        <div className="flex flex-col items-center relative">
-          
-          <div className="absolute top-[-50%] md:top-[-80%] left-1/2 -translate-x-1/2 w-full h-[900px] md:w-full md:h-[900px] bg-yellow-500/10 border-4 border-dashed border-amber-100 rounded-b-full z-0 shadow-[0_0_100px_rgba(0,0,0,0.4)] pointer-events-none" />
+      <div className="relative z-10 container mx-auto max-w-[1440px] px-8 pt-24 pb-0">
+        <div className="relative flex flex-col items-center">
+          <div className="pointer-events-none absolute top-[-50%] left-1/2 z-0 h-[900px] w-full -translate-x-1/2 rounded-b-full border-4 border-dashed border-amber-100 bg-yellow-500/10 shadow-[0_0_100px_rgba(0,0,0,0.4)] md:top-[-80%] md:h-[900px] md:w-full" />
 
-          <animated.div className="text-center space-y-6 mb-24 relative z-10">
-            <h1 className="flex flex-col items-center text-center font-playfair drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)] w-full relative z-10 z-[20]">
-              <span className="text-xl md:text-3xl lg:text-4xl font-playfair text-white font-semibold tracking-widest mb-2 md:mb-3">
+          <animated.div className="relative z-10 mb-24 space-y-6 text-center">
+            <h1 className="font-playfair relative z-10 z-[20] flex w-full flex-col items-center text-center drop-shadow-[0_10px_10px_rgba(0,0,0,0.3)]">
+              <span className="font-playfair mb-2 text-xl font-semibold tracking-widest text-white md:mb-3 md:text-3xl lg:text-4xl">
                 In this summer, you
               </span>
-              <div className="relative flex flex-col items-center justify-center text-[10vw] sm:text-[5rem] md:text-[6.5rem] lg:text-[7.5rem] font-black uppercase leading-[0.8] tracking-tighter md:tracking-[-0.04em] transition-transform duration-700 cursor-default mb-4 md:mb-8">
-                <span className="text-white text-7xl mb-4 md:mb-6">
+              <div className="relative mb-4 flex cursor-default flex-col items-center justify-center text-[10vw] leading-[0.8] font-black tracking-tighter uppercase transition-transform duration-700 sm:text-[5rem] md:mb-8 md:text-[6.5rem] md:tracking-[-0.04em] lg:text-[7.5rem]">
+                <span className="mb-4 text-7xl text-white md:mb-6">
                   Have to
                 </span>
-                <div className="px-4 pt-2 transition-transform duration-500 group">
+                <div className="group px-4 pt-2 transition-transform duration-500">
                   <span className="text-white">Protect</span>
                 </div>
               </div>
-              <span className="text-4xl md:text-6xl lg:text-7xl text-white italic font-bold flex flex-wrap items-center justify-center gap-4 group">
-                <div className="w-20 md:w-30 h-[2px] bg-rose-100 hidden sm:block mr-2 mt-2" />
-                <span className="font-outfit font-bold text-2xl md:text-4xl uppercase tracking-[0.2em] transform translate-y-1">
+              <span className="group flex flex-wrap items-center justify-center gap-4 text-4xl font-bold text-white italic md:text-6xl lg:text-7xl">
+                <div className="mt-2 mr-2 hidden h-[2px] w-20 bg-rose-100 sm:block md:w-30" />
+                <span className="font-outfit translate-y-1 transform text-2xl font-bold tracking-[0.2em] uppercase md:text-4xl">
                   your skin.
                 </span>
-                <div className="w-20 md:w-30 h-[2px] bg-rose-100 hidden sm:block ml-2 mt-2" />
+                <div className="mt-2 ml-2 hidden h-[2px] w-20 bg-rose-100 sm:block md:w-30" />
               </span>
             </h1>
           </animated.div>

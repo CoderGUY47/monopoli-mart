@@ -54,7 +54,13 @@ export const exploreProducts = [
     image: img7,
     category: "BEAUTY",
   },
-  { id: 8, name: "Velvet Cushion", price: 65.0, image: img12, category: "HOME" },
+  {
+    id: 8,
+    name: "Velvet Cushion",
+    price: 65.0,
+    image: img12,
+    category: "HOME",
+  },
   {
     id: 9,
     name: "Silk Eyemask",

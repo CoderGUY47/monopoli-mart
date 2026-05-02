@@ -1,117 +1,159 @@
 import Image from "next/image";
 import Link from "next/link";
-import { Star, Truck, ShieldCheck, ArrowLeft, Heart, Share2, Check } from "lucide-react";
+import {
+  Star,
+  Truck,
+  ShieldCheck,
+  ArrowLeft,
+  Heart,
+  Share2,
+} from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { getProductById } from "@/lib/products";
+import AddToCartButton from "@/components/shared/AddToCartButton";
 
-// --- Main Page Component ---
-export default async function ProductDetailsPage({ params }: { params: Promise<{ id: string }> }) {
+export default async function ProductDetailsPage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
   const { id } = await params;
   const product = getProductById(id);
 
   return (
-    <div className="container mx-auto px-4 py-8 md:py-16 pb-24 max-w-[1440px]">
-      {/* Back Button */}
-      <Link href="/" className="inline-flex items-center text-gray-500 hover:text-[#1a2b23] mb-8 transition-colors group">
-        <ArrowLeft className="w-4 h-4 mr-2 transform group-hover:-translate-x-1 transition-transform" />
-        Back to Home
+    <div className="container mx-auto max-w-[1440px] px-6 py-12">
+      <Link
+        href="/"
+        className="mb-8 inline-flex items-center text-gray-500 transition-colors hover:text-rose-500"
+      >
+        <ArrowLeft className="mr-2 h-4 w-4" /> Back to Collection
       </Link>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-24">
-        {/* Left: Images */}
-        <div className="space-y-4">
-          <div className="relative aspect-3/4 bg-rose-50/50 overflow-hidden rounded-sm">
-            <ProductImage src={product.image} alt={product.name} priority />
-            <span className="absolute top-4 left-4 bg-[#1a2b23] text-white px-3 py-1 text-[10px] font-bold tracking-widest uppercase">
-              {product.category}
+      <div className="grid grid-cols-1 gap-12 md:grid-cols-2">
+        {/* left part*/}
+        <div className="relative flex h-[500px] w-full items-center justify-center rounded-none border border-rose-100 bg-white p-10 shadow-sm md:h-[630px]">
+          {typeof product.image === "string" ? (
+            <img
+              src={product.image}
+              alt={product.name}
+              className="max-h-[500px] object-cover"
+            />
+          ) : (
+            <Image
+              src={product.image}
+              alt={product.name}
+              fill
+              className="object-cover p-14"
+              priority
+            />
+          )}
+          <div className="tracking-tigh absolute top-4 left-4 rounded-full bg-rose-500 px-3 py-1 text-[10px] font-bold text-white uppercase">
+            {product.category}
+          </div>
+        </div>
+
+        {/* right part*/}
+        <div className="flex flex-col">
+          <h1 className="font-playfair mb-2 text-3xl font-bold text-stone-800">
+            {product.name}
+          </h1>
+          <div className="mb-4 flex items-center gap-1 text-emerald-500">
+            {[...Array(5)].map((_, i) => (
+              <Star
+                key={i}
+                size={16}
+                fill={i < Math.floor(product.rating) ? "currentColor" : "none"}
+              />
+            ))}
+            <span className="ml-2 text-sm text-gray-400">
+              ({product.reviews} reviews)
             </span>
           </div>
+          <p className="mb-4 text-3xl font-bold text-rose-500">
+            <i className="fa-solid fa-bangladeshi-taka-sign mr-1"></i>
+            {typeof product.price === "number"
+              ? product.price.toLocaleString()
+              : product.price.toString().replace(/[^0-9,]/g, "")}
+          </p>
 
-          <div className="grid grid-cols-4 gap-4">
-            {[...Array(4)].map((_, i) => (
-              <div key={i} className={`aspect-square bg-rose-50/30 overflow-hidden border cursor-pointer ${i === 0 ? "border-rose-500" : "border-transparent hover:border-rose-200"}`}>
-                <ProductImage src={product.image} alt="" className="opacity-70" />
-              </div>
-            ))}
-          </div>
-        </div>
-
-        {/* Right: Info */}
-        <div className="flex flex-col justify-center">
-          <h1 className="text-4xl md:text-5xl font-playfair text-[#1a2b23] mb-4">{product.name}</h1>
-
-          <div className="flex items-center gap-6 mb-6">
-            <div className="flex items-center gap-1 text-rose-500">
-              <RatingStars rating={product.rating} />
-              <span className="ml-2 font-bold text-[#1a2b23]">{product.rating}</span>
-              <span className="text-gray-500 text-sm ml-1">({product.reviews} reviews)</span>
-            </div>
-            <div className="flex items-center text-emerald-700 text-sm font-medium">
-              <Check className="w-4 h-4 mr-1" /> In Stock
-            </div>
-          </div>
-
-          <div className="text-3xl font-playfair font-bold text-rose-600 mb-8 italic">
-            {typeof product.price === "number" ? `$${product.price.toFixed(2)}` : product.price}
-          </div>
-
-          <p className="text-gray-600 text-base leading-relaxed mb-10">{product.description}</p>
-
-          <div className="flex flex-col sm:flex-row gap-4 mb-10">
-            <Button className="flex-1 bg-[#1a2b23] hover:bg-[#0f1a15] text-white rounded-none py-6 uppercase tracking-widest text-xs">
-              Add to Cart
+          <p className="mb-3 text-lg leading-relaxed text-gray-600">
+            {product.description}
+          </p>
+          <div className="mb-8 flex flex-col gap-4 sm:flex-row">
+            <AddToCartButton
+              product={{
+                id: product.id,
+                title: product.name,
+                price: product.price,
+                image: product.image,
+              }}
+              className="flex-2 rounded-none bg-rose-500 py-7 text-xs font-bold tracking-widest text-white uppercase shadow-lg shadow-rose-200 transition-all hover:bg-rose-600"
+            />
+            <Button
+              variant="outline"
+              className="flex-1 rounded-none border-rose-200 py-7 text-xs font-bold tracking-widest text-stone-600 uppercase hover:bg-rose-50"
+            >
+              <Heart className="mr-2 h-4 w-4 text-rose-500" /> Wishlist
             </Button>
-            <div className="flex gap-2">
-              <Button variant="outline" className="rounded-none w-14 h-14 md:auto md:px-8 border-gray-200 hover:bg-rose-50 group">
-                <Heart className="w-5 h-5 text-rose-500 md:mr-2 group-hover:fill-rose-500 transition-all" />
-                <span className="hidden md:inline text-gray-700 font-medium">Wishlist</span>
-              </Button>
-              <Button variant="outline" className="rounded-none w-14 h-14 border-gray-200 hover:bg-rose-50">
-                <Share2 className="w-5 h-5 text-gray-500" />
-              </Button>
+            <Button
+              variant="outline"
+              className="h-14 w-14 rounded-none border-rose-200 py-7 hover:bg-rose-50 sm:h-auto sm:w-14"
+            >
+              <Share2 className="h-4 w-4 text-stone-600" />
+            </Button>
+          </div>
+
+          <div className="mb-4 space-y-4 border-t border-rose-300 pt-6">
+            <div>
+              <h3 className="font-playfair mb-3 text-xl font-bold text-stone-800">
+                Description
+              </h3>
+              <p className="text-base leading-relaxed text-gray-600">
+                The {product.name} is a premium {product.category.toLowerCase()}{" "}
+                piece designed for quality and style. Perfect for daily use or
+                as a gift, this item focuses on both function and aesthetic
+                appeal.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
+              <div className="rounded-none border border-rose-50 bg-white p-4 shadow-xl">
+                <h4 className="mb-2 text-xs font-bold tracking-wider text-stone-800 uppercase">
+                  Highlights
+                </h4>
+                <ul className="space-y-1 text-xs text-gray-500">
+                  <li>• Premium {product.category} choice</li>
+                  <li>• Built for durability</li>
+                  <li>• Quality tested</li>
+                </ul>
+              </div>
+              <div className="rounded-none border border-rose-50 bg-white p-4 shadow-xl">
+                <h4 className="mb-2 text-xs font-bold tracking-wider text-stone-800 uppercase">
+                  Care
+                </h4>
+                <p className="text-xs text-gray-500">
+                  Clean with a soft cloth. Store in a dry place.
+                </p>
+              </div>
             </div>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-8 border-t border-gray-100">
-            <Feature Icon={Truck} title="Free Shipping" subtitle="On orders over $50" />
-            <Feature Icon={ShieldCheck} title="2 Year Warranty" subtitle="Guarantee on all products" />
+          {/* trust badges for shipping and warranty */}
+          <div className="grid grid-cols-2 gap-4 pt-4">
+            <div className="flex items-center gap-3 rounded-none border-0 bg-rose-500 p-4 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-rose-50">
+                <Truck className="h-5 w-5 text-rose-500" />
+              </div>
+              <span className="text-sm font-medium">Free Shipping</span>
+            </div>
+            <div className="flex items-center gap-3 rounded-none border-0 bg-rose-500 p-4 text-white">
+              <div className="flex h-10 w-10 items-center justify-center rounded-full bg-rose-50">
+                <ShieldCheck className="h-5 w-5 text-rose-500" />
+              </div>
+              <span className="text-sm font-medium">2 Year Warranty</span>
+            </div>
           </div>
         </div>
-      </div>
-    </div>
-  );
-}
-
-// --- Simple UI Components ---
-function ProductImage({ src, alt, className = "", priority = false }: { src: any, alt: string, className?: string, priority?: boolean }) {
-  const style = "w-full h-full object-cover mix-blend-multiply";
-  if (typeof src === "string") return <img src={src} alt={alt} className={`${style} ${className}`} />;
-  return (
-    <div className={`relative w-full h-full ${className}`}>
-      <Image src={src} alt={alt} fill className={style} priority={priority} />
-    </div>
-  );
-}
-
-function RatingStars({ rating }: { rating: number }) {
-  return (
-    <div className="flex items-center gap-1">
-      {[...Array(5)].map((_, i) => (
-        <Star key={i} size={16} fill={i < Math.floor(rating) ? "currentColor" : "none"} strokeWidth={i < rating ? 0 : 1.5} />
-      ))}
-    </div>
-  );
-}
-
-function Feature({ Icon, title, subtitle }: { Icon: any, title: string, subtitle: string }) {
-  return (
-    <div className="flex items-center text-gray-600 gap-3">
-      <div className="w-10 h-10 bg-rose-50/50 rounded-full flex items-center justify-center shrink-0">
-        <Icon className="w-5 h-5 text-[#1a2b23]" />
-      </div>
-      <div>
-        <p className="font-semibold text-[#1a2b23] text-sm">{title}</p>
-        <p className="text-xs text-gray-500">{subtitle}</p>
       </div>
     </div>
   );

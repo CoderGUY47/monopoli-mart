@@ -7,7 +7,7 @@ export const metadata = {
 
 export default function PagesRoute() {
   return (
-    <div className="flex flex-col bg-[#f7f4ee] min-h-screen">
+    <div className="flex min-h-screen flex-col bg-[#f7f4ee]">
       <AllProducts />
     </div>
   );
