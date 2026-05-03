@@ -8,14 +8,16 @@ import { Card, CardContent } from "@/components/ui/card";
 import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { ArrowLeft } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
-import loginBanner from "@/assets/vertical-12.jpg";
 
 //user authentication via email and social providers
 export default function LoginPage() {
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get("callbackUrl") || "/";
+
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
@@ -58,7 +60,7 @@ export default function LoginPage() {
       };
       localStorage.setItem("user_session", JSON.stringify(mockAdmin));
 
-      router.push("/");
+      router.push(callbackUrl);
       router.refresh();
       return;
     }
@@ -70,7 +72,7 @@ export default function LoginPage() {
       },
       {
         onSuccess: () => {
-          router.push("/");
+          router.push(callbackUrl);
           router.refresh();
         },
         onError: (ctx) => {
@@ -192,7 +194,7 @@ export default function LoginPage() {
           {/* right part */}
           <div className="relative hidden overflow-hidden md:block">
             <Image
-              src={loginBanner}
+              src="/assets/vertical-12.jpg"
               alt="Background"
               fill
               sizes="(max-width: 768px) 100vw, 50vw"

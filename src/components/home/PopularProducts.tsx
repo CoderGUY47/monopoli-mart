@@ -72,11 +72,7 @@ export default function PopularProducts() {
                 {/* product image with hover zoom effect */}
                 <div className="relative mb-6 flex h-[400px] w-full items-center justify-center overflow-hidden bg-[#f9f6f3]">
                   <Image
-                    src={
-                      product.image
-                        ? require(`@/assets/${product.image}`).default
-                        : product.image_url
-                    }
+                    src={product.image?.startsWith("/") ? product.image : (product.image ? `/assets/${product.image}` : product.image_url)}
                     alt={product.title}
                     fill
                     className="object-cover transition-transform duration-500 group-hover:scale-105"

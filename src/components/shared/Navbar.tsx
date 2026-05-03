@@ -7,7 +7,6 @@ import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
 import { authClient } from "@/lib/auth-client";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import logo from "@/assets/logo.png";
 import { usePathname } from "next/navigation";
 import { useState, useEffect } from "react";
 
@@ -60,7 +59,7 @@ export default function Navbar() {
       <div className="container mx-auto flex h-20 max-w-[1440px] items-center justify-between px-6">
         <Link href="/" className="flex items-center">
           <Image
-            src={logo}
+            src="/assets/logo.png"
             alt="Monopoly-Mart Logo"
             width={200}
             height={70}

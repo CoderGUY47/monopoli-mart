@@ -33,7 +33,7 @@ export default function FaqSection() {
   ];
 
   return (
-    <section className="bg-rose-50 py-30 sm:py-60">
+    <section className="bg-white py-34 sm:py-60">
       <div className="container mx-auto max-w-[1440px] px-6">
         <div className="flex flex-col items-start gap-16 lg:flex-row lg:gap-32">
           <div className="w-full lg:w-2/5">

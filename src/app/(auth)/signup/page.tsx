@@ -67,7 +67,7 @@ export default function SignupPage() {
         <CardContent className="grid min-h-[600px] p-0 md:grid-cols-2">
           <div className="relative order-2 hidden overflow-hidden md:block">
             <Image
-              src={require("@/assets/vertical-15.jpg").default}
+              src="/assets/vertical-15.jpg"
               alt="Natural Beauty"
               fill
               className="object-cover transition-transform duration-10000 hover:scale-110"

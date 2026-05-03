@@ -1,34 +1,33 @@
 import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import aboutSection from "@/assets/about-us.jpg";
-import storyImage from "@/assets/vertical-4.jpg";
-import image1 from "@/assets/horizontal-1.jpg";
-import image2 from "@/assets/horizontal-2.jpg";
-import image3 from "@/assets/horizontal-3.jpg";
-import image4 from "@/assets/horizontal-4.jpg";
-import image5 from "@/assets/horizontal-5.jpg";
-import image6 from "@/assets/horizontal-6.jpg";
-import image7 from "@/assets/horizontal-7.jpg";
-import image8 from "@/assets/horizontal-8.jpg";
+
 
 export default function AboutUsPage() {
   const galleryImages = [
-    { src: image1, alt: "image 1" },
-    { src: image2, alt: "image 2" },
-    { src: image3, alt: "image 3" },
-    { src: image4, alt: "image 4" },
-    { src: image5, alt: "image 5" },
-    { src: image6, alt: "image 6" },
-    { src: image7, alt: "image 7" },
-    { src: image8, alt: "image 8" },
+    { src: "/assets/horizontal-1.jpg", alt: "image 1" },
+    { src: "/assets/horizontal-2.jpg", alt: "image 2" },
+    { src: "/assets/horizontal-3.jpg", alt: "image 3" },
+    { src: "/assets/horizontal-4.jpg", alt: "image 4" },
+    { src: "/assets/horizontal-5.jpg", alt: "image 5" },
+    { src: "/assets/horizontal-6.jpg", alt: "image 6" },
+    { src: "/assets/horizontal-7.jpg", alt: "image 7" },
+    { src: "/assets/horizontal-8.jpg", alt: "image 8" },
+    { src: "/assets/horizontal-9.jpg", alt: "image 9" },
+    { src: "/assets/horizontal-10.jpg", alt: "image 10" },
+    { src: "/assets/horizontal-11.jpg", alt: "image 11" },
+    { src: "/assets/vertical-1.jpg", alt: "image 12" },
+    { src: "/assets/vertical-2.jpg", alt: "image 13" },
+    { src: "/assets/vertical-3.jpg", alt: "image 14" },
+    { src: "/assets/vertical-4.jpg", alt: "image 15" },
+    { src: "/assets/vertical-5.jpg", alt: "image 16" },
   ];
 
   return (
     <div className="min-h-screen bg-rose-50">
       <section className="relative h-[60vh] w-full overflow-hidden md:h-[80vh]">
         <Image
-          src={aboutSection}
+          src="/assets/about-us.jpg"
           alt="About Monopoly-Mart"
           fill
           className="object-cover"
@@ -85,7 +84,7 @@ export default function AboutUsPage() {
       <section className="container mx-auto grid max-w-[1440px] grid-cols-1 items-center gap-16 px-6 py-24 lg:grid-cols-2">
         <div className="relative aspect-4/5 overflow-hidden">
           <Image
-            src={storyImage}
+            src="/assets/vertical-4.jpg"
             alt="Our Roots"
             fill
             className="object-cover"
@@ -178,13 +177,48 @@ export default function AboutUsPage() {
             Behind the Brand
           </p>
           <h2 className="font-playfair text-4xl font-bold text-stone-800 md:text-5xl">
-            Life at Monopoly-Mart
+            Life at Monopoly-Mart Family
           </h2>
         </div>
         <div className="grid w-full grid-cols-2 md:grid-cols-4">
-          {galleryImages.map((image, index) => (
+          {galleryImages.slice(0, 8).map((image, index) => (
             <div
-              key={index}
+              key={`top-${index}`}
+              className="group relative aspect-square overflow-hidden"
+            >
+              <Image
+                src={image.src}
+                alt={image.alt}
+                fill
+                className="object-cover transition-transform duration-500 group-hover:scale-105"
+                sizes="(max-width: 768px) 50vw, 25vw"
+              />
+              <div className="absolute inset-0 bg-rose-500/0 transition-colors duration-500 group-hover:bg-rose-500/20" />
+            </div>
+          ))}
+        </div>
+
+        <section className="bg-rose-500 py-20 text-center text-white">
+          <div className="container mx-auto max-w-[1440px] space-y-4 px-6">
+            <h2 className="font-playfair text-4xl font-bold md:text-6xl">
+              Join our community
+            </h2>
+            <p className="mx-auto max-w-xl text-lg font-light text-white/80">
+              Follow our journey and discover skincare tips, behind-the-scenes moments, and more.
+            </p>
+            <Link
+              href="#"
+              className="mt-4 inline-flex items-center gap-2 bg-white px-10 py-5 text-sm font-bold tracking-widest text-rose-500 uppercase transition-colors hover:bg-rose-50"
+            >
+              Follow @MonopolyMart <ArrowUpRight className="h-4 w-4" />
+            </Link>
+          </div>
+        </section>
+
+        <div className="grid w-full grid-cols-2 md:grid-cols-4">
+          {galleryImages.slice(8).map((image, index) => (
+            <div
+              key={`bottom-${index}`}
               className="group relative aspect-square overflow-hidden"
             >
               <Image

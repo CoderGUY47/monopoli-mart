@@ -1,20 +1,16 @@
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import vertical4 from "@/assets/vertical-4.jpg";
-import vertical5 from "@/assets/vertical-5.jpg";
-import vertical6 from "@/assets/vertical-6.jpg";
-import vertical7 from "@/assets/vertical-7.jpg";
 
 const categories = [
-  { title: "Daily Glow", image: vertical4 },
-  { title: "Botanical Blend", image: vertical5 },
-  { title: "Fresh Start", image: vertical6 },
-  { title: "Nourish Deeply", image: vertical7 },
+  { title: "Daily Glow", image: "/assets/vertical-4.jpg" },
+  { title: "Botanical Blend", image: "/assets/vertical-5.jpg" },
+  { title: "Fresh Start", image: "/assets/vertical-6.jpg" },
+  { title: "Nourish Deeply", image: "/assets/vertical-7.jpg" },
 ];
 
 export default function CategoryGrids() {
   return (
-    <section className="grid h-full w-full grid-cols-1 border-0 md:grid-cols-2 lg:grid-cols-4">
+    <section className="grid h-full w-full grid-cols-1 border-0 md:grid-cols-2 lg:grid-cols-4 md:pt-20 bg-red-50">
       {categories.map((card, i) => (
         <div
           key={i}

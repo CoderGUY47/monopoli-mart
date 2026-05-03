@@ -1,7 +1,6 @@
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import Image from "next/image";
-import horizontal3 from "@/assets/horizontal-3.jpg";
 
 export default function Articles() {
   const rightArticles = [
@@ -30,7 +29,7 @@ export default function Articles() {
     <section className="bg-rose-50 px-6 py-24">
       <div className="container mx-auto max-w-[1440px] px-8">
         <div className="animate__animated animate__fadeIn mb-16 text-center">
-          <span className="mb-4 block text-[10px] font-bold tracking-[0.3em] text-gray-400 uppercase">
+          <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-gray-400 uppercase">
             Glow Journal
           </span>
           <h2 className="font-playfair text-6xl leading-tight text-stone-800">
@@ -42,7 +41,7 @@ export default function Articles() {
           <div className="animate__animated animate__fadeInLeft flex flex-col">
             <div className="relative mb-10 h-[450px] w-full overflow-hidden shadow-2xl">
               <Image
-                src={horizontal3}
+                src="/assets/horizontal-3.jpg"
                 alt="Articles feature image"
                 fill
                 className="transform object-cover transition-transform duration-1000 hover:scale-110"

@@ -11,31 +11,28 @@ import PopularProducts from "@/components/home/PopularProducts";
 
 export default function HomePage() {
   return (
-    <div className="flex flex-col bg-[#f7f4ee]">
-      {/* Base scrolling group */}
-      <div className="relative z-30 bg-[#f7f4ee]">
+    <div className="flex flex-col bg-white">
+      {/*base scrolling group */}
+      <div className="relative z-30 bg-white">
         <Banner />
         <BrandLogos />
         <SummerSale />
         <ExploreProducts />
       </div>
 
-      {/* Slidiing Over Checkpoint 1 */}
-      <div className="relative z-20 bg-rose-50 shadow-[0_-20px_50px_rgba(0,0,0,0.15)] flex flex-col">
+      {/*slidiing Over Checkpoint 1 */}
+      <div className="flex flex-col relative z-20 bg-white">
         <PopularProducts />
         <CategoryGrids />
       </div>
 
-      {/* Sticky Checkpoint 2 */}
-      <div
-        className="sticky z-10"
-        style={{ top: "min(0px, calc(100vh - 100%))" }}
-      >
+      {/*sticky checkpoint 2 */}
+      <div className="sticky z-10" style={{ top: "min(0px, calc(100vh - 100%))" }}>
         <FaqSection />
       </div>
 
-      {/* Slidiing Over Checkpoint 2 */}
-      <div className="relative z-20 bg-rose-50 shadow-[0_-20px_50px_rgba(0,0,0,0.15)] flex flex-col">
+      {/* slidiing over checkpoint 2 */}
+      <div className="flex flex-col relative z-20 bg-white">
         <Testimonials />
         <Articles />
         <div className="bg-stone-900 w-full">

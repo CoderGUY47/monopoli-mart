@@ -1,5 +1,4 @@
 "use client";
-
 import { useState, useEffect } from "react";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,7 +10,6 @@ import { authClient } from "@/lib/auth-client";
 import { toast } from "react-toastify";
 import { Select } from "../ui/select";
 
-// This component renders the entire product catalog
 export default function AllProducts() {
   const { addToCart } = useCart();
   const currentSessionData = authClient.useSession();
@@ -60,7 +58,7 @@ export default function AllProducts() {
                   className="relative block h-full w-full"
                 >
                   <Image
-                    src={require(`@/assets/${product.image}`).default}
+                    src={product.image.startsWith("/") ? product.image : `/assets/${product.image}`}
                     alt={product.title}
                     fill
                     className="object-cover transition-transform duration-700 group-hover:scale-110"

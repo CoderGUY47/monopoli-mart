@@ -2,15 +2,12 @@
 
 import { ChevronDown, Star } from "lucide-react";
 import Image from "next/image";
-import leftCard from "@/assets/left-comment-card.png";
-import rightCard from "@/assets/right-comment-card.png";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Autoplay, Pagination } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/pagination";
 import { useSpring, animated } from "@react-spring/web";
 import { useEffect, useState } from "react";
-import image from "@/assets/vertical-1.jpg";
 
 const reviews = [
   {
@@ -77,8 +74,7 @@ export default function Testimonials() {
           <div className="grid grid-cols-3 items-center gap-0">
             <div className="z-10 flex flex-col justify-between gap-14">
               <h2 className="font-playfair text-6xl leading-[1.05] text-white italic md:text-7xl">
-                What
-                <br />
+                What <br />
                 They <span className="font-bold not-italic">Say</span>
                 <br />
                 <span className="not-italic">About Us</span>
@@ -86,8 +82,10 @@ export default function Testimonials() {
 
               <div className="relative w-full max-w-[380px] transform transition-all duration-500 hover:-translate-y-1">
                 <Image
-                  src={leftCard}
+                  src="/assets/left-comment-card.png"
                   alt="comment card"
+                  width={380}
+                  height={220}
                   className="h-auto w-full object-contain"
                   style={{
                     filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))",
@@ -131,7 +129,7 @@ export default function Testimonials() {
               >
                 <div className="relative flex h-[750px] w-[380px] items-center justify-center overflow-hidden shadow-[0_60px_120px_-20px_rgba(0,0,0,0.55)]">
                   <Image
-                    src={image}
+                    src="/assets/vertical-9.jpg"
                     alt="Fashion model"
                     fill
                     className="object-cover"
@@ -147,8 +145,10 @@ export default function Testimonials() {
             <div className="z-10 flex flex-col items-end justify-between gap-14">
               <div className="relative w-full max-w-[380px] transform transition-all duration-500 hover:-translate-y-1">
                 <Image
-                  src={rightCard}
+                  src="/assets/right-comment-card.png"
                   alt="comment card"
+                  width={380}
+                  height={220}
                   className="h-auto w-full object-contain"
                   style={{
                     filter: "drop-shadow(0 15px 35px rgba(0,0,0,0.22))",
@@ -191,7 +191,7 @@ export default function Testimonials() {
         </div>
       </section>
 
-      <section className="bg-rose-50 py-20">
+      <section className="bg-white pt-0 pb-17">
         <div className="container mx-auto max-w-[1440px] px-8">
           <style>{`
             .review-swiper .swiper-pagination {

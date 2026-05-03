@@ -28,7 +28,7 @@ export default function SummerSale() {
               className="relative h-[450px] w-[300px] overflow-hidden md:w-[400px]"
             >
               <Image
-                src={require(`@/assets/horizontal-${num}.jpg`).default}
+                src={`/assets/horizontal-${num}.jpg`}
                 alt={`Summer Backdrop ${num}`}
                 fill
                 className="object-cover"

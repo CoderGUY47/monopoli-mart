@@ -11,6 +11,9 @@ import {
 import { Button } from "@/components/ui/button";
 import { getProductById } from "@/lib/products";
 import AddToCartButton from "@/components/shared/AddToCartButton";
+import { auth } from "@/lib/auth";
+import { headers } from "next/headers";
+import { redirect } from "next/navigation";
 
 export default async function ProductDetailsPage({
   params,
@@ -18,6 +21,14 @@ export default async function ProductDetailsPage({
   params: Promise<{ id: string }>;
 }) {
   const { id } = await params;
+  const session = await auth.api.getSession({
+    headers: await headers(),
+  });
+
+  if (!session) {
+    redirect(`/login?callbackUrl=/product/${id}`);
+  }
+
   const product = getProductById(id);
 
   return (

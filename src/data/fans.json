@@ -7,7 +7,7 @@
     "category": "Handheld Fan",
     "rating": 5,
     "reviews": 124,
-    "image": "fan-1.jpg"
+    "image": "/assets/fan-1.jpg"
   },
   {
     "id": "jisulife-handheld-fan-pro1",
@@ -17,7 +17,7 @@
     "category": "Pro Fan",
     "rating": 4.8,
     "reviews": 98,
-    "image": "fan-2.jpg"
+    "image": "/assets/fan-2.jpg"
   },
   {
     "id": "jisulife-life-5-plus",
@@ -29,7 +29,7 @@
     "category": "Handheld Fan",
     "rating": 4.9,
     "reviews": 215,
-    "image": "fan-3.jpg"
+    "image": "/assets/fan-3.jpg"
   },
   {
     "id": "jisulife-fa53-pro1s",
@@ -41,7 +41,7 @@
     "category": "Ultimate Fan",
     "rating": 5,
     "reviews": 342,
-    "image": "fan-4.jpg"
+    "image": "/assets/jisulife-fa53-pro1s.jpg"
   },
   {
     "id": "jisulife-fa49",
@@ -53,6 +53,6 @@
     "category": "Mini Fan",
     "rating": 4.7,
     "reviews": 88,
-    "image": "fan-5.jpg"
+    "image": "/assets/jisulife-fa49.jpg"
   }
 ]

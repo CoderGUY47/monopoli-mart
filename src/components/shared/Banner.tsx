@@ -41,7 +41,7 @@ const Banner = () => {
             <SwiperSlide key={num}>
               <div className="relative h-full w-full">
                 <Image
-                  src={require(`@/assets/horizontal-${num}.jpg`).default}
+                  src={`/assets/horizontal-${num}.jpg`}
                   alt={`Background ${num}`}
                   fill
                   className="object-cover"
