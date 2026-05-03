@@ -69,7 +69,7 @@ export default function Testimonials() {
 
   return (
     <>
-      <section className="relative z-30 mt-[180px] mb-[120px] overflow-visible bg-rose-500 py-20">
+      <section className="relative z-30 mt-[180px] mb-[120px] overflow-visible bg-rose-500 py-20 ">
         <div className="relative container mx-auto max-w-[1440px] px-8">
           <div className="grid grid-cols-3 items-center gap-0">
             <div className="z-10 flex flex-col justify-between gap-14">

@@ -120,6 +120,7 @@ export default function PopularProducts() {
                     <Link
                       href={product.product_link || `/product/${product.id}`}
                       className="font-outfit w-full border border-rose-500 px-4 py-3 text-center text-sm tracking-wider text-rose-500 uppercase transition-colors duration-300 hover:bg-rose-500 hover:text-white"
+                      onClick={() => toast.info("Login for product details")}
                     >
                       View Details
                     </Link>

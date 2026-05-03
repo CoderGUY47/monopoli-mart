@@ -56,13 +56,6 @@ export default function SignupPage() {
 
   return (
     <div className="flex min-h-screen w-full items-center justify-center bg-rose-50/50 px-4 py-8">
-      <Link
-        href="/"
-        className="group absolute top-8 left-8 flex items-center font-medium text-[#1a2b23] transition-all hover:gap-2"
-      >
-        <ArrowLeft className="mr-2 h-4 w-4 group-hover:mr-0" /> Back to Home
-      </Link>
-
       <Card className="w-full max-w-5xl overflow-hidden rounded-none border-none shadow-2xl md:rounded-sm">
         <CardContent className="grid min-h-[600px] p-0 md:grid-cols-2">
           <div className="relative order-2 hidden overflow-hidden md:block">

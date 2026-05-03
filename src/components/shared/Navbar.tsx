@@ -129,8 +129,11 @@ export default function Navbar() {
               </Button>
             </Link>
             <Link href="/login">
-              <Button className="flex items-center gap-2 rounded-none bg-rose-500 px-8 py-6 text-xs font-bold tracking-wider text-white uppercase transition-all hover:bg-rose-600">
-                Login <User className="h-4 w-4" />
+              <Button className="group flex items-center gap-3 rounded-none bg-rose-500 px-8 py-6 text-xs font-bold tracking-wider text-white uppercase transition-all hover:bg-rose-600">
+                Login
+                <div className="rounded-full bg-white p-1.5 text-rose-500 transition-colors">
+                  <User className="h-4 w-4" />
+                </div>
               </Button>
             </Link>
           </div>

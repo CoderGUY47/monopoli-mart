@@ -7,6 +7,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { exploreProducts } from "@/data/exploreProducts";
 import Image from "next/image";
+import { toast } from "react-toastify";
 
 export default function ExploreProducts() {
   return (
@@ -37,7 +38,10 @@ export default function ExploreProducts() {
           >
             {exploreProducts.map((product) => (
               <SwiperSlide key={product.id}>
-                <div className="group flex h-full cursor-pointer flex-col items-center">
+                <div 
+                  className="group flex h-full cursor-pointer flex-col items-center"
+                  onClick={() => toast.warning("Login for product details")}
+                >
                   <div className="relative mx-auto mb-10 aspect-1/2 w-full max-w-[240px] transition-transform duration-500 group-hover:-translate-y-2">
                     <div className="absolute top-4 -right-2 -z-10 h-full w-full rounded-sm bg-black/5 blur-xl transition-colors group-hover:bg-black/10"></div>
                     <div className="absolute inset-0 z-10 flex items-center justify-center overflow-hidden bg-rose-50 shadow-sm">
@@ -49,7 +53,7 @@ export default function ExploreProducts() {
                         sizes="(max-width: 640px) 100vw, 240px"
                       />
                     </div>
-                    <div className="absolute -bottom-5 left-1/2 h-[15px] w-[85%] -translate-x-1/2 rounded-[100%] bg-black/20 opacity-100 blur-md transition-colors group-hover:bg-black/30"></div>
+                    <div className="absolute -bottom-5 left-1/2 h-[15px] w-[85%] -translate-x-1/2 rounded-[100%] bg-black/20 blur-md transition-colors group-hover:bg-black/30"></div>
                   </div>
                   <div className="text-center">
                     <p className="mb-2 text-[10px] font-medium tracking-widest text-gray-400 uppercase">
