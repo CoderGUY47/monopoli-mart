@@ -58,7 +58,8 @@ function LoginForm() {
         image:
           "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&h=100&auto=format&fit=crop",
       };
-      localStorage.setItem("user_session", JSON.stringify(mockAdmin));
+      localStorage.setItem("user_profile", JSON.stringify(mockAdmin));
+      window.dispatchEvent(new Event("user_profile_updated"));
 
       router.push(callbackUrl);
       router.refresh();
