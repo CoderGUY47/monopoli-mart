@@ -8,21 +8,21 @@ export default function Footer() {
     <footer className="bg-stone-900 pt-20 pb-10 text-white">
       <div className="container mx-auto flex max-w-[1440px] flex-col gap-7 border-b border-gray-600/30 px-6 pb-12 md:flex-row">
         {/* col 1: brand (35%) */}
-        <div className="w-full space-y-2 md:w-[50%]">
-          <Link href="/" className="flex items-center gap-3 justify-start">
+        <div className="w-full space-y-4 md:w-[50%]">
+          <Link href="/" className="flex flex-col items-start gap-1 sm:flex-row sm:items-center sm:gap-3">
             <Image
               src="/assets/logo.png"
               alt="Monopoly-Mart Logo"
               width={280}
               height={100}
-              className="h-30 w-auto object-contain"
+              className="h-20 w-auto object-contain sm:h-30"
               priority
             />
-            <p className="font-playfair text-3xl leading-relaxed font-bold text-gray-400 lowercase">
+            <p className="font-playfair text-2xl font-bold leading-relaxed text-gray-400 lowercase sm:text-3xl">
               Monopoly-Mart
             </p>
           </Link>
-          <p className="w-[450px] text-lg leading-relaxed font-light text-gray-400">
+          <p className="w-full max-w-[450px] text-base font-light leading-relaxed text-gray-400 sm:text-lg">
             Powered by nature, backed by science. Gentle on your skin, fierce on
             results.
           </p>
@@ -104,7 +104,7 @@ export default function Footer() {
           <h4 className="font-playfair mb-6 text-lg font-semibold italic">
             Information
           </h4>
-          <div className="flex flex-col space-y-4 text-sm font-light text-gray-400">
+          <div className="flex flex-col space-y-4 text-lg font-light text-gray-400">
             <p>+8801722920920</p>
             <p>Gulshan, Dhaka, Bangladesh</p>
             <p>hello@monopoly-mart.com</p>

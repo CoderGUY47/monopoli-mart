@@ -41,7 +41,7 @@ export default function SummerSale() {
       </div>
 
       <div className="relative z-10 flex w-full flex-col items-center justify-center bg-black/70 p-0 shadow-2xl duration-500 md:p-0">
-        <div className="flex h-[450px] w-[400px] flex-col items-center justify-center bg-black/60 p-4 md:p-5">
+        <div className="flex h-[450px] w-[412px] flex-col items-center justify-center bg-black/60 p-4 md:p-5">
           <h2 className="font-playfair transform text-center text-6xl leading-24 font-extrabold tracking-widest text-white drop-shadow-md md:text-8xl">
             70% <br />
             <span className="text-8xl font-bold text-white md:text-9xl">

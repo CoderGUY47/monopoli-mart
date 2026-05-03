@@ -26,34 +26,35 @@ export default function Articles() {
   ];
 
   return (
-    <section className="bg-rose-50 px-6 py-24">
-      <div className="container mx-auto max-w-[1440px] px-8">
-        <div className="animate__animated animate__fadeIn mb-16 text-center">
+    <section className="overflow-hidden bg-rose-50 py-16 md:px-6 md:py-24">
+      <div className="container mx-auto max-w-[1440px] px-4 md:px-8">
+        <div className="animate__animated animate__fadeIn mb-12 text-center md:mb-16">
           <span className="mb-4 block text-xs font-bold tracking-[0.3em] text-gray-400 uppercase">
             Glow Journal
           </span>
-          <h2 className="font-playfair text-6xl leading-tight text-stone-800">
-            Articles and <span className="font-bold italic">Insights</span>
+          <h2 className="font-playfair text-4xl leading-tight text-stone-800 md:text-6xl">
+            Articles and <br className="md:hidden" /><span className="font-bold italic">Insights</span>
           </h2>
         </div>
 
-        <div className="grid grid-cols-1 items-start gap-20 md:grid-cols-2">
+        <div className="grid grid-cols-1 items-start gap-12 md:grid-cols-2 md:gap-20">
           <div className="animate__animated animate__fadeInLeft flex flex-col">
-            <div className="relative mb-10 h-[450px] w-full overflow-hidden shadow-2xl">
+            <div className="relative mb-8 h-[250px] w-[calc(100%+2rem)] -ml-4 overflow-hidden sm:h-[350px] md:mb-10 md:ml-0 md:h-[450px] md:w-full md:rounded-sm md:shadow-2xl">
               <Image
                 src="/assets/horizontal-3.jpg"
                 alt="Articles feature image"
                 fill
                 className="transform object-cover transition-transform duration-1000 hover:scale-110"
+                style={{ objectFit: 'cover' }}
               />
               <div className="absolute inset-0 bg-black/5"></div>
             </div>
 
             <div className="max-w-xl">
-              <h3 className="font-playfair mb-4 text-3xl leading-tight font-bold text-stone-800">
+              <h3 className="font-playfair mb-3 text-2xl font-bold leading-tight text-stone-800 md:mb-4 md:text-3xl">
                 Minimalist Skincare: How to Achieve More with Less
               </h3>
-              <p className="font-outfit mb-3 text-lg leading-relaxed text-gray-500">
+              <p className="font-outfit mb-4 text-base leading-relaxed text-gray-500 md:mb-3 md:text-lg">
                 The &quot;Skinimalism&quot; movement is taking over. We show you
                 how to curate a high-performance routine with only three
                 essential products.
