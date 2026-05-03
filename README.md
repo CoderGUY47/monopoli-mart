@@ -1,20 +1,31 @@
-# 👑 Monopoly-Mart: Premium Skincare & Beauty eCommerce Platform
+<div align="center">
 
-Monopoly-Mart is a high-end, **cinematic eCommerce solution** tailored for the luxury beauty industry. Built with **Next.js 15**, **Tailwind CSS v4**, and **Better Auth**, it provides a lightning-fast, secure, and visually immersive shopping experience.
+# 👑 Monopoly-Mart
 
-[![Live Demo](https://img.shields.io/badge/Live-Demo-rose?style=for-the-badge)](https://monopoli-mart.vercel.app/)
-[![Next.js 15](https://img.shields.io/badge/Next.js-15-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![Vercel Deployment](https://img.shields.io/badge/Vercel-Deployment-emerald?style=for-the-badge&logo=vercel)](https://vercel.com/)
+### Premium Skincare & Beauty eCommerce Platform
+
+*Bridging cinematic visual storytelling with conversion-optimized eCommerce.*
+
+[![Live Demo](https://img.shields.io/badge/🌐_Live_Demo-monopoli--mart.vercel.app-e11d48?style=for-the-badge)](https://monopoli-mart.vercel.app/)
+&nbsp;
+[![Next.js 15](https://img.shields.io/badge/Next.js-15-000000?style=for-the-badge&logo=next.js&logoColor=white)](https://nextjs.org/)
+&nbsp;
+[![Vercel](https://img.shields.io/badge/Vercel-Deployed-000000?style=for-the-badge&logo=vercel&logoColor=white)](https://vercel.com/)
+&nbsp;
+[![TailwindCSS](https://img.shields.io/badge/Tailwind-v4-06b6d4?style=for-the-badge&logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+
+</div>
 
 ---
 
 ## 📖 Table of Contents
 
 - [✨ Overview](#-overview)
-- [💡 Business Value & SEO](#-business-value--seo)
+- [🚀 Live Link](#-live-link)
+- [💡 Business Value &amp; SEO](#-business-value--seo)
 - [🚀 Key Features](#-key-features)
-- [📦 Tech Stack & Architecture](#-tech-stack--architecture)
-- [🛠️ Installation & Setup](#️-installation--setup)
+- [📦 Tech Stack &amp; Architecture](#-tech-stack--architecture)
+- [🛠️ Installation &amp; Setup](#️-installation--setup)
 - [🚢 Production Deployment](#-production-deployment)
 
 ---
@@ -23,12 +34,28 @@ Monopoly-Mart is a high-end, **cinematic eCommerce solution** tailored for the l
 
 Monopoly-Mart bridges the gap between high-end visual storytelling and conversion-optimized functional eCommerce. The platform is defined by its **Imperial Emerald & Rose** aesthetic, offering a "Royal Glow" journey to every customer.
 
+---
+
 ## 🚀 Live Link
 
-[View Monopoly-Mart Live](https://monopoli-mart.vercel.app/)
+**→ [View Monopoly-Mart Live](https://monopoli-mart.vercel.app/)**
 
-![Monopoly-Mart Premium Skincare Banner](https://images.unsplash.com/photo-1620916566398-39f1143ab7be?q=80&w=2000&auto=format&fit=crop&ar=16:9)
-*Figure 1: High-resolution cinematic banner highlighting the luxury skincare theme.*
+<br/>
+
+<table>
+  <tr>
+    <td width="50%">
+      <img src="https://images.unsplash.com/photo-1771329064159-33f758d91f4a?q=80&w=880&h=495&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Monopoly-Mart Preview 1" width="100%" style="border-radius:8px;aspect-ratio:16/9;object-fit:cover" />
+    </td>
+    <td width="50%">
+      <img src="https://images.unsplash.com/photo-1633690675360-fdd5ce31ce5d?q=80&w=880&h=495&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Monopoly-Mart Preview 2" width="100%" style="border-radius:8px;aspect-ratio:16/9;object-fit:cover" />
+    </td>
+  </tr>
+  <tr>
+    <td align="center"><sub>🛍️ Premium Product Experience</sub></td>
+    <td align="center"><sub>✨ Luxury Skincare Collection</sub></td>
+  </tr>
+</table>
 
 ---
 
@@ -36,20 +63,22 @@ Monopoly-Mart bridges the gap between high-end visual storytelling and conversio
 
 Most beauty platforms fail to balance aesthetics with performance. Monopoly-Mart solves this through:
 
-- **Enhanced SEO Ranking**: Leveraging Next.js 15 Server-Side Rendering (SSR) for instant indexing and optimal Core Web Vitals.
-- **Cinematic Trust**: High-end glassmorphism and motion design build immediate brand authority.
-- **Secure Infrastructure**: Enterprise-grade authentication via **Better Auth** ensures customer data protection.
-- **Frictionless Conversion**: Optimized checkout-ready UI that removes technical barriers to purchase.
+| Feature                           | Impact                                                                          |
+| --------------------------------- | ------------------------------------------------------------------------------- |
+| **Enhanced SEO Ranking**    | Leveraging Next.js 15 SSR for instant indexing and optimal Core Web Vitals      |
+| **Cinematic Trust**         | High-end glassmorphism and motion design build immediate brand authority        |
+| **Secure Infrastructure**   | Enterprise-grade authentication via**Better Auth** protects customer data |
+| **Frictionless Conversion** | Optimized checkout-ready UI that removes technical barriers to purchase         |
 
 ---
 
 ## 🚀 Key Features
 
-- **Dynamic Hero Architecture**: A cinematic gateway designed to maximize user engagement.
-- **Premium Swiper Product Grid**: Interactive, high-performance product sliders with localized glassmorphism navigation buttons.
-- **Complete Auth Ecosystem**: Full support for Email/Password and Google OAuth via **Better Auth**.
-- **Real-time Cart Management**: Global state-managed shopping cart with persistent local storage.
-- **Newsletter Engine**: SEO-optimized lead generation form built with hydration-aware input handlers.
+- **🎬 Dynamic Hero Architecture** — A cinematic gateway designed to maximize user engagement.
+- **🛒 Premium Swiper Product Grid** — Interactive, high-performance product sliders with localized glassmorphism navigation buttons.
+- **🔐 Complete Auth Ecosystem** — Full support for Email/Password and Google OAuth via **Better Auth**.
+- **📦 Real-time Cart Management** — Global state-managed shopping cart with persistent local storage.
+- **📧 Newsletter Engine** — SEO-optimized lead generation form built with hydration-aware input handlers.
 
 ---
 
@@ -57,17 +86,21 @@ Most beauty platforms fail to balance aesthetics with performance. Monopoly-Mart
 
 ### **Core Production Dependencies**
 
-- **Framework**: `next@^15.0.0` (App Router)
-- **State Management**: `react@19.2.4` with Context API
-- **Auth Engine**: `better-auth@^1.6.9`
-- **Database**: `mongodb@^7.2.0` (Atlas Integration)
-- **VFX & Slider**: `swiper@^12.1.4`, `react-spring`, `animate.css`
-- **Notifications**: `react-toastify@^11.1.0`
+| Layer                      | Technology                                            |
+| -------------------------- | ----------------------------------------------------- |
+| **Framework**        | `next@^15.0.0` (App Router)                         |
+| **State Management** | `react@19.2.4` with Context API                     |
+| **Auth Engine**      | `better-auth@^1.6.9`                                |
+| **Database**         | `mongodb@^7.2.0` (Atlas Integration)                |
+| **VFX & Slider**     | `swiper@^12.1.4`, `react-spring`, `animate.css` |
+| **Notifications**    | `react-toastify@^11.1.0`                            |
 
 ### **Styling & UI Layers**
 
-- **Foundation**: `tailwindcss@^4`, `shadcn@^4.6.0`, `@base-ui/react`
-- **Iconography**: `lucide-react`, `react-icons`, `@gravity-ui/icons`
+| Layer                 | Technology                                                |
+| --------------------- | --------------------------------------------------------- |
+| **Foundation**  | `tailwindcss@^4`, `shadcn@^4.6.0`, `@base-ui/react` |
+| **Iconography** | `lucide-react`, `react-icons`, `@gravity-ui/icons`  |
 
 ---
 
@@ -80,15 +113,16 @@ Most beauty platforms fail to balance aesthetics with performance. Monopoly-Mart
    cd monopoli-mart
    npm install --legacy-peer-deps
    ```
-
 2. **Environment Variables**
 
    Create a `.env` file with the following keys:
-   - `MONGODB_URI`
-   - `BETTER_AUTH_SECRET`
-   - `BETTER_AUTH_URL`
-   - `NEXT_PUBLIC_APP_URL`
 
+   ```env
+   MONGODB_URI=your_mongodb_atlas_uri
+   BETTER_AUTH_SECRET=your_secret_key
+   BETTER_AUTH_URL=http://localhost:3000
+   NEXT_PUBLIC_APP_URL=http://localhost:3000
+   ```
 3. **Develop**
 
    ```bash
@@ -108,6 +142,12 @@ Monopoly-Mart is pre-configured for **Vercel**.
 
 ## 🤝 Social & Contributing
 
+<div align="center">
+
 Produced with precision by **[CoderGUY47](https://github.com/CoderGUY47)**.
 
-Join us in redefining luxury eCommerce!
+*Join us in redefining luxury eCommerce!*
+
+[![GitHub](https://img.shields.io/badge/GitHub-CoderGUY47-181717?style=for-the-badge&logo=github)](https://github.com/CoderGUY47)
+
+</div>
