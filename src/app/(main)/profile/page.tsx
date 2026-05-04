@@ -11,22 +11,20 @@ import { toast } from "react-toastify";
 const ProfilePage = () => {
   const router = useRouter();
   const currentSessionData = authClient.useSession();
-  const [savedProfileFromStorage, setSavedProfileFromStorage] =
-    useState<any>(null);
+  const [savedProfileFromStorage, setSavedProfileFromStorage] =  useState<any>(null);
   const [isCheckingSession, setIsCheckingSession] = useState(true);
   const [activeField, setActiveField] = useState<string>("default");
   const formRef = useRef<HTMLFormElement>(null);
-  //heroUI's slot="close" destroys the form, so using onPress and usered work instant before the modal closes
 
   useEffect(() => {
-    const savedSessionString = localStorage.getItem("user_session");
+    const savedSessionString = localStorage.getItem("user_profile");
     if (savedSessionString) {
       setSavedProfileFromStorage(JSON.parse(savedSessionString));
     }
     setIsCheckingSession(false);
   }, []);
 
-  const handleUpdate = () => {
+  const handleUpdate = async () => {
     if (!formRef.current) return;
     const formData = new FormData(formRef.current);
     const newlyTypedName = formData.get("name") as string;
@@ -34,6 +32,20 @@ const ProfilePage = () => {
     const newlyTypedImageUrl = formData.get("image") as string;
     const existingProfileDetails =
       currentSessionData.data?.user || savedProfileFromStorage || {};
+    
+    // If it's a real session from the DB, update it in the backend
+    if (currentSessionData.data?.user) {
+      try {
+        await authClient.updateUser({
+          name: newlyTypedName,
+          image: newlyTypedImageUrl,
+        });
+      } catch (error) {
+        toast.error("Failed to update profile in database");
+        return;
+      }
+    }
+
     const newlyUpdatedProfile = {
       ...existingProfileDetails,
       name: newlyTypedName,

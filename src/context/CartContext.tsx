@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext, useContext, useState, useEffect } from "react";
+import React, { createContext, useContext, useReducer, useEffect } from "react";
 import { toast } from "react-toastify";
 
 export interface CartItem {
@@ -13,7 +13,7 @@ export interface CartItem {
 
 interface CartContextType {
   cart: CartItem[];
-  addToCart: (product: any) => void;
+  addToCart: (product: CartItem) => void;
   removeFromCart: (id: string | number) => void;
   updateQuantity: (id: string | number, quantity: number) => void;
   clearCart: () => void;
@@ -21,103 +21,115 @@ interface CartContextType {
   totalPrice: number;
 }
 
+type CartAction =
+  | { type: "LOAD"; payload: CartItem[] }
+  | { type: "ADD"; payload: CartItem }
+  | { type: "REMOVE"; payload: string | number }
+  | { type: "UPDATE_QTY"; payload: { id: string | number; quantity: number } }
+  | { type: "CLEAR" };
+
+function cartReducer(cart: CartItem[], action: CartAction): CartItem[] {
+  switch (action.type) {
+    case "LOAD":
+      return action.payload;
+
+    case "ADD": {
+      const exists = cart.find((item) => item.id === action.payload.id);
+      if (exists) {
+        // Item already in cart → just bump its quantity
+        return cart.map((item) =>
+          item.id === action.payload.id
+            ? { ...item, quantity: item.quantity + 1 }
+            : item
+        );
+      }
+      // New item → add with quantity 1
+      return [...cart, { ...action.payload, quantity: 1 }];
+    }
+
+    case "REMOVE":
+      return cart.filter((item) => item.id !== action.payload);
+
+    case "UPDATE_QTY":
+      return cart.map((item) =>
+        item.id === action.payload.id
+          ? { ...item, quantity: action.payload.quantity }
+          : item
+      );
+
+    case "CLEAR":
+      return [];
+  }
+}
+
 const CartContext = createContext<CartContextType | undefined>(undefined);
 
 export function CartProvider({ children }: { children: React.ReactNode }) {
-  const [cart, setCart] = useState<CartItem[]>([]);
+  const [cart, dispatch] = useReducer(cartReducer, []);
 
+  //load saved cart from localStorage on first render
   useEffect(() => {
-    const savedCart = localStorage.getItem("monopoly-mart-cart");
-    if (savedCart) {
-      try {
-        setCart(JSON.parse(savedCart));
-      } catch (e) {
-        console.error("Failed to parse cart from localStorage", e);
-      }
+    try {
+      const saved = localStorage.getItem("monopoly-mart-cart");
+      if (saved) dispatch({ type: "LOAD", payload: JSON.parse(saved) });
+    } catch {
+      console.error("Could not restore cart from localStorage.");
     }
   }, []);
 
+  //rersist cart to localStorage whenever it changes
   useEffect(() => {
     localStorage.setItem("monopoly-mart-cart", JSON.stringify(cart));
   }, [cart]);
 
-  const addToCart = (product: any) => {
-    const isIncrement = cart.some((item) => item.id === product.id);
-    const message = isIncrement
-      ? `Success! Increased quantity of ${product.title}`
-      : `Hurray! ${product.title} added to cart`;
+  function addToCart(product: CartItem) {
+    const alreadyInCart = cart.some((item) => item.id === product.id);
+    const msg = alreadyInCart
+      ? `Quantity increased for ${product.title}`
+      : `${product.title} added to cart!`;
 
-    // Use setTimeout to avoid "Cannot update a component while rendering another component"
-    setTimeout(() => {
-      toast.success(message);
-    }, 0);
+    //toast so it doesn't fire during a render cycle
+    setTimeout(() => toast.success(msg), 0);
+    dispatch({ type: "ADD", payload: product });
+  }
 
-    setCart((prevCart) => {
-      const existingItem = prevCart.find((item) => item.id === product.id);
-      if (existingItem) {
-        return prevCart.map((item) =>
-          item.id === product.id
-            ? { ...item, quantity: item.quantity + 1 }
-            : item,
-        );
-      }
-      return [
-        ...prevCart,
-        {
-          id: product.id,
-          title: product.title,
-          price: product.price,
-          image: product.image,
-          quantity: 1,
-        },
-      ];
-    });
-  };
+  function removeFromCart(id: string | number) {
+    dispatch({ type: "REMOVE", payload: id });
+  }
 
-  const removeFromCart = (id: string | number) => {
-    setCart((prevCart) => prevCart.filter((item) => item.id !== id));
-  };
-
-  const updateQuantity = (id: string | number, quantity: number) => {
+  function updateQuantity(id: string | number, quantity: number) {
     if (quantity < 1) return;
-    setCart((prevCart) =>
-      prevCart.map((item) => (item.id === id ? { ...item, quantity } : item)),
-    );
-  };
+    dispatch({ type: "UPDATE_QTY", payload: { id, quantity } });
+  }
 
-  const clearCart = () => setCart([]);
+  function clearCart() {
+    dispatch({ type: "CLEAR" });
+  }
 
-  const totalItems = cart.reduce((acc, item) => acc + item.quantity, 0);
-
-  const totalPrice = cart.reduce((acc, item) => {
-    const priceNum =
+  // Derived totals
+  const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const totalPrice = cart.reduce((sum, item) => {
+    const price =
       typeof item.price === "string"
         ? parseFloat(item.price.replace(/[^0-9.]/g, ""))
         : item.price;
-    return acc + priceNum * item.quantity;
+    return sum + price * item.quantity;
   }, 0);
 
   return (
     <CartContext.Provider
-      value={{
-        cart,
-        addToCart,
-        removeFromCart,
-        updateQuantity,
-        clearCart,
-        totalItems,
-        totalPrice,
-      }}
+      value={{ cart, addToCart, removeFromCart, updateQuantity, clearCart, totalItems, totalPrice }}
     >
       {children}
     </CartContext.Provider>
   );
 }
 
+// ─── Hook ─────────────────────────────────────────────────────────────────────
+
 export function useCart() {
   const context = useContext(CartContext);
-  if (context === undefined) {
-    throw new Error("useCart must be used within a CartProvider");
-  }
+  if (!context) throw new Error("useCart must be used inside <CartProvider>");
   return context;
 }
+

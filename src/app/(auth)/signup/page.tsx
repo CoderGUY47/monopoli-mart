@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -9,13 +9,26 @@ import { FcGoogle } from "react-icons/fc";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { ArrowLeft } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 
 export default function SignupPage() {
   const router = useRouter();
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [localProfile, setLocalProfile] = useState<any>(null);
+
+  const session = authClient.useSession();
+  
+  useEffect(() => {
+    const stored = localStorage.getItem("user_profile");
+    if (stored) setLocalProfile(JSON.parse(stored));
+  }, []);
+
+  useEffect(() => {
+    if (session.data?.user || localProfile) {
+      router.push("/");
+    }
+  }, [session.data?.user, localProfile, router]);
   const handleGoogleSignUp = async () => {
     await authClient.signIn.social({
       provider: "google",

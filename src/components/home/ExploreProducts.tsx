@@ -8,8 +8,23 @@ import "swiper/css/navigation";
 import { exploreProducts } from "@/data/exploreProducts";
 import Image from "next/image";
 import { toast } from "react-toastify";
+import { authClient } from "@/lib/auth-client";
+import { useState, useEffect } from "react";
 
 export default function ExploreProducts() {
+  const currentSessionData = authClient.useSession();
+  const [savedProfileFromStorage, setSavedProfileFromStorage] = useState<any>(null);
+
+  useEffect(() => {
+    const savedSessionString = localStorage.getItem("user_profile");
+    if (savedSessionString) {
+      setSavedProfileFromStorage(JSON.parse(savedSessionString));
+    }
+  }, []);
+
+  const currentUserProfile =
+    currentSessionData.data?.user || savedProfileFromStorage;
+
   return (
     <section className="relative container mx-auto max-w-[1440px] px-6 py-14 pt-20 text-center">
       <h2 className="font-playfair mb-10 text-6xl tracking-tight text-stone-800">
@@ -40,7 +55,11 @@ export default function ExploreProducts() {
               <SwiperSlide key={product.id}>
                 <div 
                   className="group flex h-full cursor-pointer flex-col items-center"
-                  onClick={() => toast.warning("Login for product details")}
+                  onClick={() => {
+                    if (!currentUserProfile) {
+                      toast.warning("Login for product details");
+                    }
+                  }}
                 >
                   <div className="relative mx-auto mb-10 aspect-1/2 w-full max-w-[240px] transition-transform duration-500 group-hover:-translate-y-2">
                     <div className="absolute top-4 -right-2 -z-10 h-full w-full rounded-sm bg-black/5 blur-xl transition-colors group-hover:bg-black/10"></div>

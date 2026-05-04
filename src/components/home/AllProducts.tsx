@@ -17,7 +17,7 @@ export default function AllProducts() {
     useState<any>(null);
 
   useEffect(() => {
-    const savedSessionString = localStorage.getItem("user_session");
+    const savedSessionString = localStorage.getItem("user_profile");
     if (savedSessionString)
       setSavedProfileFromStorage(JSON.parse(savedSessionString));
   }, []);
@@ -56,7 +56,12 @@ export default function AllProducts() {
                 <Link
                   href={`/product/${product.title.toLowerCase().replace(/\s+/g, "-")}`}
                   className="relative block h-full w-full"
-                  onClick={() => toast.info("Login for product details")}
+                  onClick={(e) => {
+                    if (!currentUserProfile) {
+                      e.preventDefault();
+                      toast.info("Login for product details");
+                    }
+                  }}
                 >
                   <Image
                     src={product.image.startsWith("/") ? product.image : `/assets/${product.image}`}
@@ -74,7 +79,7 @@ export default function AllProducts() {
                         toast.info("Please login to add items to cart");
                         return;
                       }
-                      addToCart(product);
+                      addToCart({ ...product, quantity: 1 });
                     }}
                     className="font-outfit flex w-full items-center justify-center gap-2 bg-rose-500 py-4 text-[11px] tracking-[0.2em] text-white uppercase transition-colors duration-300 hover:bg-rose-600"
                   >
@@ -92,7 +97,12 @@ export default function AllProducts() {
                 </div>
                 <Link
                   href={`/product/${product.title.toLowerCase().replace(/\s+/g, "-")}`}
-                  onClick={() => toast.info("Login for product details")}
+                  onClick={(e) => {
+                    if (!currentUserProfile) {
+                      e.preventDefault();
+                      toast.info("Login for product details");
+                    }
+                  }}
                 >
                   <h3 className="font-playfair mb-2 text-[1.1rem] leading-tight font-semibold text-stone-800 transition-colors group-hover:text-rose-500">
                     {product.title}

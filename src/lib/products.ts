@@ -1,8 +1,9 @@
 import fansData from "@/data/fans.json";
+import allProducts from "@/data/allProducts.json";
 import { exploreProducts } from "@/data/exploreProducts";
 
 export interface Product {
-  id: string;
+  id: string | number;
   name: string;
   price: string | number;
   image: any;
@@ -13,11 +14,27 @@ export interface Product {
 }
 
 export function getProductById(id: string): Product {
+  // Normalize slug for comparison
+  const slug = id.toLowerCase();
+
   // 1. Find product in multiple data sources
   const target =
     (fansData as any[]).find(
-      (f) => f.id === id || f.product_link?.endsWith(id),
-    ) || exploreProducts.find((p) => p.id.toString() === id);
+      (f) =>
+        f.id === id ||
+        f.product_link?.endsWith(id) ||
+        f.title?.toLowerCase().replace(/\s+/g, "-") === slug,
+    ) ||
+    exploreProducts.find(
+      (p) =>
+        p.id.toString() === id ||
+        p.name?.toLowerCase().replace(/\s+/g, "-") === slug,
+    ) ||
+    (allProducts as any[]).find(
+      (p) =>
+        p.id.toString() === id ||
+        p.title?.toLowerCase().replace(/\s+/g, "-") === slug,
+    );
 
   // 2. Fallback if product not found
   if (!target) {
@@ -45,11 +62,11 @@ export function getProductById(id: string): Product {
 
   // 4. Return normalized product object
   return {
-    id,
+    id: target.id || id,
     name: target.title || target.name,
     price: target.price,
     image: finalImage,
-    category: target.category || "FASHION",
+    category: target.category || "BEAUTY",
     rating: target.rating || 5,
     reviews: target.reviews || 128,
     description:

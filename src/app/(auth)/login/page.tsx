@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, Suspense } from "react";
+import { useState, Suspense, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -20,6 +20,21 @@ function LoginForm() {
 
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const [localProfile, setLocalProfile] = useState<any>(null);
+
+  // Redirect if already logged in
+  const session = authClient.useSession();
+  
+  useEffect(() => {
+    const stored = localStorage.getItem("user_profile");
+    if (stored) setLocalProfile(JSON.parse(stored));
+  }, []);
+
+  useEffect(() => {
+    if (session.data?.user || localProfile) {
+      router.push(callbackUrl);
+    }
+  }, [session.data?.user, localProfile, router, callbackUrl]);
 
   //state for storing user credentials
   const [formData, setFormData] = useState({
@@ -59,29 +74,29 @@ function LoginForm() {
           "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&h=100&auto=format&fit=crop",
       };
       localStorage.setItem("user_profile", JSON.stringify(mockAdmin));
+      document.cookie = "mock_admin=true; path=/;";
       window.dispatchEvent(new Event("user_profile_updated"));
 
       router.push(callbackUrl);
       router.refresh();
-      return;
+    } else {
+      await authClient.signIn.email(
+        {
+          email: formData.email,
+          password: formData.password,
+        },
+        {
+          onSuccess: () => {
+            router.push(callbackUrl);
+            router.refresh();
+          },
+          onError: (ctx) => {
+            setError(ctx.error.message || "Invalid credentials.");
+            setLoading(false);
+          },
+        },
+      );
     }
-
-    await authClient.signIn.email(
-      {
-        email: formData.email,
-        password: formData.password,
-      },
-      {
-        onSuccess: () => {
-          router.push(callbackUrl);
-          router.refresh();
-        },
-        onError: (ctx) => {
-          setError(ctx.error.message || "Invalid credentials.");
-          setLoading(false);
-        },
-      },
-    );
   };
 
   return (

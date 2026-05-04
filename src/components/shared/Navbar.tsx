@@ -16,12 +16,18 @@ export default function Navbar() {
   const currentSessionData = authClient.useSession();
   const [savedProfileFromStorage, setSavedProfileFromStorage] = useState<any>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
+    setIsMounted(true);
     const handleStorageUpdate = () => {
       const savedSessionString = localStorage.getItem("user_profile");
       if (savedSessionString) {
         setSavedProfileFromStorage(JSON.parse(savedSessionString));
+        // Ensure cookie is synced for server-side checks if mock admin
+        if (!document.cookie.includes("mock_admin=true")) {
+          document.cookie = "mock_admin=true; path=/;";
+        }
       } else {
         setSavedProfileFromStorage(null);
       }
@@ -42,6 +48,7 @@ export default function Navbar() {
   const handleSignOut = async () => {
     await authClient.signOut();
     localStorage.removeItem("user_profile");
+    document.cookie = "mock_admin=; path=/; expires=Thu, 01 Jan 1970 00:00:00 GMT";
     setSavedProfileFromStorage(null);
   };
 
@@ -83,8 +90,9 @@ export default function Navbar() {
         </div>
 
         <div className="flex items-center gap-4">
-          {/* if logged in then. it will show the card profile button. hide the signup and login button */}
-          {currentUserProfile ? (
+          {!isMounted ? (
+            <div className="h-10 w-24 animate-pulse bg-gray-200"></div>
+          ) : currentUserProfile ? (
             <div className="flex items-center justify-center space-x-4">
               <Link
                 href="/cart"
